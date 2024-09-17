@@ -1,5 +1,5 @@
 print("Hello World from dev")
-
+print("Bishkek blablabla")
 
 print("hello world from branch nazar!")
 
