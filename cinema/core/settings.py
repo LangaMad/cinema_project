@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'apps.film',
     'apps.home',
     'apps.celebrities',
-    'apps.comments'
+    'apps.comments',
+    'apps.news'
 ]
 
 MIDDLEWARE = [
