@@ -1,4 +1,5 @@
 print("Hello World from dev")
+print("Bishkek blablabla")
 print("Goodbye World from askhat")
 print("Hello World from dev2")
 
