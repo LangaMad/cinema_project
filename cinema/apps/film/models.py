@@ -59,9 +59,3 @@ class Film(models.Model):
     raiting = models.ForeignKey(Raiting, verbose_name='Рейтинг', on_delete=models.CASCADE)
 
 
-
-
-
-
-
-
