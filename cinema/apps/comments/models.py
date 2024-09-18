@@ -18,8 +18,8 @@ class FilmComments(models.Model):
 
 
 class LikeFilmComments(models.Model):
-    film_comment = models.ManyToManyField(FilmComments, on_delete = models.CASCADE, related_name = 'likes')
-    user = models.ForeignKey('accounts.User', on_delete = models.CASCADE)
+    film_comment = models.ManyToManyField(FilmComments, related_name='likes')
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
     like = models.PositiveIntegerField('likes')
     def __str__(self):
         return self.user.username
