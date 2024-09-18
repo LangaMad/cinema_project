@@ -30,7 +30,7 @@ class FilmAdmin(admin.ModelAdmin):
     list_display = [
         'name',
         'origin_name',
-        'image',
+        'poster',
         'release',
         'country',
         'slogan',
