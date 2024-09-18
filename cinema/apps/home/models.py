@@ -5,10 +5,10 @@ from django.db import models
 class About_us(models.Model):
     title = models.CharField('Title', max_length=200),
     title2 = models.CharField('Title', max_length=200)
-    Text = models.TextField('Text')
-    Text2 = models.TextField('Text')
-    Image1 = models.ImageField('Image',upload_to='images')
-    Image2 = models.ImageField('Image',upload_to='images')
+    text = models.TextField('Text')
+    text2 = models.TextField('Text')
+    image1 = models.ImageField('Image',upload_to='images')
+    image2 = models.ImageField('Image',upload_to='images')
 
     def __str__(self):
         return self.name
@@ -18,9 +18,9 @@ class About_us(models.Model):
         verbose_name_plural = 'О Нас'
 class Vacancy(models.Model):
     title = models.CharField('Title', max_length=200),
-    Text = models.TextField('Text'),
+    text = models.TextField('Text'),
     image = models.ImageField('Image', upload_to='images')
-    Salary = models.PositiveIntegerField('Salary'),
+    salary = models.PositiveIntegerField('Salary'),
     def __str__(self):
         return self.name
 
