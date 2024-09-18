@@ -1,6 +1,5 @@
 from django.db import models
 
-from cinema_project.cinema.apps import film
 
 
 class FilmComments(models.Model):
@@ -36,7 +35,7 @@ from cinema.apps.news.models import Post
 
 # Create your models here.
 
-class Post_Comment(models.Model):
+class PostComment(models.Model):
     post = models.ForeignKey(Post, on_delete = models.CASCADE, related_name = 'comments')
     author = models.ForeignKey('accounts.User', on_delete = models.CASCADE)
     text = models.TextField('Текст')

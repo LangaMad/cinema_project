@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from cinema.apps.comments.models import Post_Comment
+from .models import PostComment
 
 
 # Register your models here.
-@admin.register(Post_Comment)
-class PostComment(admin.ModelAdmin):
+@admin.register(PostComment)
+class PostCommentAdmin(admin.ModelAdmin):
     list_display = [
         'post',
         'author',

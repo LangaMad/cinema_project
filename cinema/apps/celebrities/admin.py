@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from cinema.apps.celebrities.models import Celebrity
+from .models import Celebrity
 
 
 # Register your models here.
 @admin.register(Celebrity)
-class PostImage(admin.ModelAdmin):
+class CelebrityAdmin(admin.ModelAdmin):
     list_display = [
         'first_name',
         'surname',

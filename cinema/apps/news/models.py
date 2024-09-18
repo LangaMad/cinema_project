@@ -2,6 +2,10 @@ from enum import unique
 
 from django.db import models
 
+from cinema.apps.news import admin
+from cinema.apps.news.admin import PostImage
+
+
 # Create your models here.
 
 class Category(models.Model):
@@ -38,7 +42,12 @@ class Post(models.Model):
     main_image = models.ImageField('Изображение', upload_to='images/',
                               blank=True, null=True)
 
-class Post_Image(models.Model):
+
+class PostImageInline(admin.TabularInline):
+    model = PostImage
+    extra = 1
+
+class PostImage(models.Model):
     post_images = models.ForeignKey(Post, related_name='post_images', on_delete=models.CASCADE)
     image1 = models.ImageField('Изображение1',upload_to='post_images/', verbose_name=("Дополнительное изображение"),
                                blank=True, null=True)
