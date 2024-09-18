@@ -22,7 +22,7 @@ class RaitingAdmin(admin.ModelAdmin):
 
 
 @admin.register(Film)
-class PostAdmin(admin.ModelAdmin):
+class FilmAdmin(admin.ModelAdmin):
     list_display = [
         'name',
         'origin_name',
@@ -40,8 +40,9 @@ class PostAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = ('genre',)
 
-@admin.register(Frame)
-class FrameAdmin(admin.ModelAdmin):
+
+@admin.register(FilmFrame)
+class FilmFrameAdmin(admin.ModelAdmin):
     list_display = [
         'film',
         'frame'
