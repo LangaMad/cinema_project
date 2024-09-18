@@ -33,11 +33,11 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     GENDER_CHOICE = [('male', 'male'),
                      ('female', 'female')]
-    username = models.CharField('Никнейм',max_length=255,unique=True)
-    email = models.EmailField('Почта', max_length = 150,unique=True)
+    username = models.CharField('Никнейм',max_length=50,unique=True)
+    email = models.EmailField('Почта', max_length = 50,unique=True)
     avatar = models.ImageField('Аватарка', upload_to='users/', blank=True, null=True)
     birth_date = models.DateField('Дата рождения', blank=True, null=True)
-    city = models.CharField('Город', max_length=100, blank=True, null=True)
+    city = models.CharField('Город', max_length=50, blank=True, null=True)
     gender = models.CharField('Пол', choices=GENDER_CHOICE, default='male')
     about = models.TextField('О себе', blank=True, null=True)
     fav_movies = models.ManyToManyField('film.Film', related_name='favorite_film')
