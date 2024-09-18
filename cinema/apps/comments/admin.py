@@ -24,12 +24,3 @@ class FilmCommentsAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at'
     ]
-
-@admin.register(LikeFilmComments)
-class LikeFilmCommentsAdmin(admin.ModelAdmin):
-    list_display = [
-        'film_comment',
-        'user',
-        'like'
-    ]
-    filter_horizontal = ('like',),

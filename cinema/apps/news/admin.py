@@ -27,7 +27,6 @@ class PostAdmin(admin.ModelAdmin):
         'text',
         'created_at',
         'updated_at',
-        'is_active',
         'main_image'
 
     ]
