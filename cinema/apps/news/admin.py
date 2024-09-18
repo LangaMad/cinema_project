@@ -32,8 +32,7 @@ class PostAdmin(admin.ModelAdmin):
 
     ]
     filter_horizontal = ('tags',)
-    inline = [PostImageInline]
-
+    inlines = [PostImageInline]
 
 
 
