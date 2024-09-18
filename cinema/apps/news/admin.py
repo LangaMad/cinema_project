@@ -21,16 +21,20 @@ class PostAdmin(admin.ModelAdmin):
         'title',
         'category',
         'text',
-        'text2',
-        'text3' ,
-        'text4',
         'created_at',
         'updated_at',
         'is_active',
-        'image',
-        'image2' ,
-        'image3',
-        'image4'
+        'main_image'
+
     ]
     filter_horizontal = ('tags',)
+
+@admin.register(Post_Image)
+class PostImage(admin.ModelAdmin):
+    list_display = [
+        'image1',
+        'image2',
+        'image3',
+        'image4'
+        ]
 
