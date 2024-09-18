@@ -39,7 +39,7 @@ class FilmAdmin(admin.ModelAdmin):
         'time',
         'raiting',
     ]
-    filter_horizontal = ('genre','celebrity')
+    filter_horizontal = ('genre','celebrity',)
     inlines = [FilmFrameInline, TrailerInline]
 
 

@@ -33,9 +33,9 @@ class Film(models.Model):
                               blank=True, null=True)
     release = models.DateTimeField('Дата релиза')
     country = models.CharField('Страна', max_length=100)
-    genre = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='films')
+    genre = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='genre_films')
     slogan = models.TextField('Слоган', blank=True, null=True)
-    celebrity= models.ManyToManyField('celebrities.Celebrity', on_delete=models.CASCADE)
+    celebrity= models.ManyToManyField('celebrities.Celebrity',verbose_name='Celebrity', related_name='celebrity_films')
     budget = models.DecimalField('Бюджет', max_digits=15, decimal_places=2, blank=True, null=True)
     time = models.CharField('Время')
     raiting = models.ForeignKey(Raiting, verbose_name='Рейтинг', on_delete=models.CASCADE)
@@ -54,7 +54,7 @@ class FilmFrame(models.Model):
 
 
 class Trailer(models.Model):
-    film = models.ForeignKey(Film, related_name='film_frames',verbose_name='Кадр', on_delete=models.CASCADE)
+    film = models.ForeignKey(Film, related_name='film_trailer',verbose_name='Кадр', on_delete=models.CASCADE)
     video = models.FileField(upload_to='videos/', null=True, blank=True,
                              validators=[
                                  FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
