@@ -12,7 +12,7 @@ class AboutUsAdmin(admin.ModelAdmin):
         'title2',
         'text',
         'text2',
-        'image',
+        'image1',
         'image2',
     ]
 
