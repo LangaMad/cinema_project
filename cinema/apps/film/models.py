@@ -31,6 +31,7 @@ class Film(models.Model):
     origin_name = models.CharField('Оригинальное название', max_length=100)
     poster = models.ImageField('Изображение', upload_to='images/',
                               blank=True, null=True)
+    film = models.FileField('Фильм', upload_to='videos/', blank=True, null=True)
     release = models.DateTimeField('Дата релиза')
     country = models.CharField('Страна', max_length=100)
     genre = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='genre_films')
@@ -39,6 +40,7 @@ class Film(models.Model):
     budget = models.DecimalField('Бюджет', max_digits=15, decimal_places=2, blank=True, null=True)
     time = models.CharField('Время')
     raiting = models.ForeignKey(Raiting, verbose_name='Рейтинг', on_delete=models.CASCADE)
+    film_description = models.TextField('Описание фильма', blank=True, null=True)
 
 
 class FilmFrame(models.Model):
