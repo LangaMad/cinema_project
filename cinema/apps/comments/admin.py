@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import PostComment
-from .models import Post_Comment, FilmComments, LikeFilmComments
+from .models import PostComment, FilmComments, LikeFilmComments
 
 
 # Register your models here.
