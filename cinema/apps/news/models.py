@@ -47,7 +47,7 @@ class Post(models.Model):
 
 class PostImage(models.Model):
     post_images = models.ForeignKey(Post, related_name='post_images', on_delete=models.CASCADE)
-    image1 = models.ImageField('Изображение1',upload_to='post_images/', verbose_name=("Дополнительное изображение"),
+    image = models.ImageField('Изображение1',upload_to='post_images/', verbose_name=("Дополнительное изображение"),
                                blank=True, null=True)
 
 

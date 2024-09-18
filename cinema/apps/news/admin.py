@@ -32,15 +32,8 @@ class PostAdmin(admin.ModelAdmin):
 
     ]
     filter_horizontal = ('tags',)
+    inline = [PostImageInline]
 
 
-
-@admin.register(PostImage)
-class PostImageAdmin(admin.ModelAdmin):
-    list_display = [
-        'image1'
-        ]
-    search_fields = ['post_name']
-    inlines = [PostImageInline]
 
 
