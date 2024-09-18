@@ -25,4 +25,4 @@ class FilmCommentsAdmin(admin.ModelAdmin):
         'updated_at'
     ]
 
-    filter_horizontal = ('like',)
+    # filter_horizontal = ('like',)
