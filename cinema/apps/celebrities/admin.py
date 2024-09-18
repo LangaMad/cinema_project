@@ -17,3 +17,4 @@ class CelebrityAdmin(admin.ModelAdmin):
         'short_bio'
 
         ]
+    filter_horizontal = ('role',)
