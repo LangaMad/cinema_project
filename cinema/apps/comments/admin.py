@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import PostComment
-from .models import Post_Comment, FilmComments, LikeFilmComments
+from .models import PostComment, FilmComments, LikeFilmComments
 
 
 # Register your models here.
@@ -24,12 +24,4 @@ class FilmCommentsAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at'
     ]
-
-@admin.register(LikeFilmComments)
-class LikeFilmCommentsAdmin(admin.ModelAdmin):
-    list_display = [
-        'film_comment',
-        'user',
-        'like'
-    ]
-    filter_horizontal = ('like',),
+    filter_horizontal = ('like',)
