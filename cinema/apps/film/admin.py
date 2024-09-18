@@ -22,7 +22,7 @@ class RaitingAdmin(admin.ModelAdmin):
 
 
 @admin.register(Film)
-class PostAdmin(admin.ModelAdmin):
+class FilmAdmin(admin.ModelAdmin):
     list_display = [
         'name',
         'origin_name',
