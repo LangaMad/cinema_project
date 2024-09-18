@@ -19,7 +19,7 @@ class Raiting(models.Model):
     rait = models.DecimalField(max_digits=3, decimal_places=1, validators=[MaxValueValidator(10)])
 
     def __str__(self):
-        return self.rait
+        return str(self.rait)
 
     class Meta:
         verbose_name = 'Рейтинг'
