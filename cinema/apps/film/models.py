@@ -62,9 +62,3 @@ class FilmFrame(models.Model):
     class Meta:
         verbose_name = 'Кадр'
         verbose_name_plural = 'Кадры'
-
-
-
-
-
-
