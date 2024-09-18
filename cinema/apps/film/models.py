@@ -44,16 +44,7 @@ class Film(models.Model):
     country = models.CharField('Страна', max_length=100)
     genre = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='films')
     slogan = models.TextField('Слоган', blank=True, null=True)
-    director = models.ManyToManyField('celebrities.Director', on_delete=models.CASCADE)
-    screenwriter =models.ManyToManyField('celebrities.Screenwriter', on_delete=models.CASCADE)
-    producer = models.ManyToManyField('celebrities.Producer', on_delete=models.CASCADE)
-    operator = models.ManyToManyField('celebrities.Operator', on_delete=models.CASCADE)
-    composer = models.ManyToManyField('celebrities.Composer', on_delete=models.CASCADE,
-                                      blank=True, null=True)
-    artist = models.ManyToManyField('celebrities.Artist', on_delete=models.CASCADE)
-    installation = models.ManyToManyField('celebrities.Installation', on_delete=models.CASCADE)
-    actors = models.ManyToManyField('celebrities.Actors', on_delete=models.CASCADE,)
-    dubbing_actors = models.ManyToManyField('celebrities.DubActors', on_delete=models.CASCADE, blank=True, null=True)
+    celebrity= models.ManyToManyField('celebrities.Celebrity', on_delete=models.CASCADE)
     budget = models.DecimalField('Бюджет', max_digits=15, decimal_places=2, blank=True, null=True)
     time = models.CharField('Время')
     trailer = models.ForeignKey(Trailer, verbose_name='Трейлер', on_delete=models.CASCADE)
@@ -66,7 +57,7 @@ class FilmFrame(models.Model):
     frame = models.ImageField(upload_to='images/',null=True,blank=True)
 
     def __str__(self):
-        return f"{self.film.name} - {self.frame.name}"
+        return self.film.name
 
     class Meta:
         verbose_name = 'Кадр'
