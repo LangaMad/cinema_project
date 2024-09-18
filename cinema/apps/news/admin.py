@@ -5,6 +5,10 @@ from .models import *
 
 # Register your models here.
 
+class PostImageInline(admin.TabularInline):
+    model = PostImage
+    extra = 1
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -29,16 +33,12 @@ class PostAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = ('tags',)
 
-class TabularInline:
-    pass
+
 
 @admin.register(PostImage)
 class PostImageAdmin(admin.ModelAdmin):
     list_display = [
-        'image1',
-        'image2',
-        'image3',
-        'image4'
+        'image1'
         ]
     search_fields = ['post_name']
     inlines = [PostImageInline]

@@ -43,21 +43,12 @@ class Post(models.Model):
                               blank=True, null=True)
 
 
-class PostImageInline(admin.TabularInline):
-    model = PostImage
-    extra = 1
+
 
 class PostImage(models.Model):
     post_images = models.ForeignKey(Post, related_name='post_images', on_delete=models.CASCADE)
     image1 = models.ImageField('Изображение1',upload_to='post_images/', verbose_name=("Дополнительное изображение"),
                                blank=True, null=True)
-    image2 = models.ImageField('Изображение1', upload_to='post_images/', verbose_name=("Дополнительное изображение"),
-                              blank=True, null=True)
-    image3 = models.ImageField('Изображение1', upload_to='post_images/', verbose_name=("Дополнительное изображение"),
-                              blank=True, null=True)
-    image4 = models.ImageField('Изображение1', upload_to='post_images/', verbose_name=("Дополнительное изображение"),
-                              blank=True, null=True)
-
 
 
 
