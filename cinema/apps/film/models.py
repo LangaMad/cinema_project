@@ -35,7 +35,7 @@ class Film(models.Model):
     country = models.CharField('Страна', max_length=100)
     genre = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='genre_films')
     slogan = models.TextField('Слоган', blank=True, null=True)
-    celebrity= models.ManyToManyField('celebrities.Celebrity', related_name='celebrity_films')
+    celebrity= models.ManyToManyField('celebrities.Celebrity',verbose_name='Celebrity', related_name='celebrity_films')
     budget = models.DecimalField('Бюджет', max_digits=15, decimal_places=2, blank=True, null=True)
     time = models.CharField('Время')
     raiting = models.ForeignKey(Raiting, verbose_name='Рейтинг', on_delete=models.CASCADE)
