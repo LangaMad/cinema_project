@@ -11,14 +11,19 @@ class GenreAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
-@admin.register(Trailer)
-class TrailerAdmin(admin.ModelAdmin):
-    list_display = ['video']
-
-
 @admin.register(Raiting)
 class RaitingAdmin(admin.ModelAdmin):
     list_display = ['rait']
+
+
+class FilmFrameInline(admin.TabularInline):
+    model = FilmFrame
+    extra = 1
+
+
+class TrailerInline(admin.TabularInline):
+    model = Trailer
+    extra = 1
 
 
 @admin.register(Film)
@@ -30,22 +35,13 @@ class FilmAdmin(admin.ModelAdmin):
         'release',
         'country',
         'slogan',
-        'celebrity',
         'budget',
         'time',
-        'trailer',
-        'trailer2',
-        'raiting'
-
+        'raiting',
     ]
-    filter_horizontal = ('genre',)
+    filter_horizontal = ('genre','celebrity')
+    inlines = [FilmFrameInline, TrailerInline]
 
 
-@admin.register(FilmFrame)
-class FilmFrameAdmin(admin.ModelAdmin):
-    list_display = [
-        'film',
-        'frame'
-    ]
 
 

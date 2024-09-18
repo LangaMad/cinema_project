@@ -15,15 +15,6 @@ class Genre(models.Model):
         verbose_name_plural = 'Жанры'
 
 
-class Trailer(models.Model):
-    video = models.FileField(upload_to='videos/',null=True,blank=True,
-                    validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
-
-    class Meta:
-        verbose_name = 'Трейлер'
-        verbose_name_plural = 'Трейлеры'
-
-
 class Raiting(models.Model):
     rait = models.DecimalField(max_digits=3, decimal_places=1, validators=[MaxValueValidator(10)])
 
@@ -47,8 +38,6 @@ class Film(models.Model):
     celebrity= models.ManyToManyField('celebrities.Celebrity', on_delete=models.CASCADE)
     budget = models.DecimalField('Бюджет', max_digits=15, decimal_places=2, blank=True, null=True)
     time = models.CharField('Время')
-    trailer = models.ForeignKey(Trailer, verbose_name='Трейлер', on_delete=models.CASCADE)
-    trailer2 = models.ForeignKey(Trailer, verbose_name='Трейлер2', on_delete=models.CASCADE)
     raiting = models.ForeignKey(Raiting, verbose_name='Рейтинг', on_delete=models.CASCADE)
 
 
@@ -62,3 +51,17 @@ class FilmFrame(models.Model):
     class Meta:
         verbose_name = 'Кадр'
         verbose_name_plural = 'Кадры'
+
+
+class Trailer(models.Model):
+    film = models.ForeignKey(Film, related_name='film_frames',verbose_name='Кадр', on_delete=models.CASCADE)
+    video = models.FileField(upload_to='videos/', null=True, blank=True,
+                             validators=[
+                                 FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
+
+    def __str__(self):
+        return self.film.name
+
+    class Meta:
+        verbose_name = 'Трейлер'
+        verbose_name_plural = 'Трейлеры'
