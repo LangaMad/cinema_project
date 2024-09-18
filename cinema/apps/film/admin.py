@@ -8,9 +8,15 @@ class GenreAdmin(admin.ModelAdmin):
     list_display = ['name']
     prepopulated_fields = {'slug': ('name',)}
 
+
 @admin.register(Trailer)
 class TrailerAdmin(admin.ModelAdmin):
     list_display = ['video']
+
+
+@admin.register(Raiting)
+class RaitingAdmin(admin.ModelAdmin):
+    list_display = ['rait']
 
 
 @admin.register(Film)
@@ -34,7 +40,8 @@ class PostAdmin(admin.ModelAdmin):
         'budget',
         'time',
         'trailer',
-        'trailer2'
+        'trailer2',
+        'raiting'
 
     ]
     filter_horizontal = ('genre',)
