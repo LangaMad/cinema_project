@@ -2,9 +2,6 @@ from enum import unique
 
 from django.db import models
 
-from cinema.apps.news import admin
-from cinema.apps.news.admin import PostImage
-
 
 # Create your models here.
 
