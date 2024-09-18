@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from cinema_project.cinema.apps.home.models import Vacancy, About_us, Agreement, Vacancy_answer
+from .models import Vacancy, Agreement, AboutUs, VacancyAnswer
 
 
 # Register your models here.
-@admin.register(About_us)
+@admin.register(AboutUs)
 class AboutUsAdmin(admin.ModelAdmin):
     objects = None
     list_display = [
@@ -27,7 +27,7 @@ class VacancyAdmin(admin.ModelAdmin):
     ]
 
 
-@admin.register(Vacancy_answer)
+@admin.register(VacancyAnswer)
 class VacancyAnswerAdmin(admin.ModelAdmin):
     list_display = [
         'name',

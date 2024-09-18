@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class About_us(models.Model):
+class AboutUs(models.Model):
     title = models.CharField('Title', max_length=200),
     title2 = models.CharField('Title', max_length=200)
     text = models.TextField('Text')
@@ -27,7 +27,7 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name='Вакансия'
         verbose_name_plural = 'Вакансии'
-class Vacancy_answer(models.Model):
+class VacancyAnswer(models.Model):
     name = models.CharField('Имя', max_length=200)
     lastname = models.CharField('Фамилия', max_length=200)
     surname = models.CharField('Отчество',blank=True,null=True, max_length=200)

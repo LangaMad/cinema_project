@@ -18,7 +18,7 @@ class FilmComments(models.Model):
         verbose_name_plural = 'Комментарии'
 
 
-class Like(models.Model):
+class LikeFilmComments(models.Model):
     film_comment = models.ManyToManyField(FilmComments, on_delete = models.CASCADE, related_name = 'likes')
     user = models.ForeignKey('accounts.User', on_delete = models.CASCADE)
     like = models.PositiveIntegerField('likes')
