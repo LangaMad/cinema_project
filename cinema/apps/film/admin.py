@@ -1,3 +1,5 @@
+from tkinter import Frame
+
 from django.contrib import admin
 from .models import *
 
@@ -46,6 +48,11 @@ class PostAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = ('genre',)
 
-
+@admin.register(Frame)
+class FrameAdmin(admin.ModelAdmin):
+    list_display = [
+        'film',
+        'frame'
+    ]
 
 
