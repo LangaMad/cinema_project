@@ -3,7 +3,7 @@ from .views import *
 
 
 urlpatterns = [
-    path('comment/', (), name='comment'),
+    path('/', (), name=''),
     path('/', (), name=''),
     path('/', (), name=''),
 ]

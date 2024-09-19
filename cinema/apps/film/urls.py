@@ -3,7 +3,8 @@ from .views import *
 
 
 urlpatterns = [
-    path('film/', (), name='film'),
-
+    path('/', (), name=''),
+    path('/', (), name=''),
+    path('/', (), name=''),
 
 ]
