@@ -10,7 +10,7 @@ from django.db.models import Q
 
 class CelebrityListView(ListView):
     model = Celebrity
-    template_name = 'celebrities.html'
+    template_name = 'pages/celebrities.html'
     context_object_name = 'celebrities'
     queryset = Celebrity # одно и тоже
     paginate_by = 2
@@ -42,7 +42,7 @@ class CelebrityListView(ListView):
 
 class CelebrityDetailView(DetailView):
     model = Celebrity
-    template_name = 'celebrities.html'
+    template_name = 'pages/celebrities.html'
     context_object_name = 'celebrity'
 
     def get_context_data(self, **kwargs):
