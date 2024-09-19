@@ -24,3 +24,4 @@ class RoleAdmin(admin.ModelAdmin):
     list_display = [
         'name',
     ]
+    prepopulated_fields = {'slug': ('name',)}
