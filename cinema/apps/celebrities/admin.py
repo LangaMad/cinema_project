@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Celebrity
+from .models import *
 
 
 # Register your models here.
@@ -18,3 +18,10 @@ class CelebrityAdmin(admin.ModelAdmin):
 
         ]
     filter_horizontal = ('role',)
+
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    list_display = [
+        'name',
+    ]
+    prepopulated_fields = {'slug': ('name',)}

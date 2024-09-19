@@ -17,12 +17,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('',include('apps.home.urls')),
+    # path('film/', include('apps.film.urls')),
+    # path('news/', include('apps.news.urls')),
+    # path('celebrities/', include('apps.celebrities.urls')),
+    # path('comments/', include('apps.comments.urls'))
 ]
 
 if settings.DEBUG:
