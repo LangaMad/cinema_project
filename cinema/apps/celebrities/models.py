@@ -23,7 +23,7 @@ class Celebrity(models.Model):
                               blank=True, null=True)
     is_alive = models.BooleanField('Жив', blank = True, null = True)
     short_bio = models.TextField('Биография кратко', blank = True, null = True)
-    role = models.ManyToManyField(Role, related_name='celebrities', verbose_name='Роль', blank = True, null = True)
+    role = models.ManyToManyField(Role, related_name='celebrities', verbose_name='Роль')
 
     def __str__(self):
         return self.first_name + ' ' + self.surname
