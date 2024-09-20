@@ -10,54 +10,32 @@ from django.db.models import Q
 
 class CelebrityListView(ListView):
     model = Celebrity
-    template_name = 'pages/celebrities.html'
+    template_name = 'pages/celebrity_list.html'
     context_object_name = 'celebrities'
-    queryset = Celebrity # одно и тоже
-    paginate_by = 2
+    queryset = Celebrity.objects.all() # одно и тож
+
+    # def get_queryset(self): #Поисковик
+    #     search_text = self.request.GET.get('query')
+    #     if search_text is None:
+    #         return Celebrity.objects.all()
+    #     q = self.model.objects.filter(
+    #         Q(title__icontains = search_text) | # and - |
+    #         Q(text__icontains=search_text) |
+    #         Q(text2__icontains=search_text) |
+    #         Q(text3__icontains=search_text)
+    #     )
+    #     return q
 
 
-    def get_queryset(self): #Поисковик
-        search_text = self.request.GET.get('query')
-        if search_text is None:
-            return Celebrity.objects.all()
-        q = self.model.objects.filter(
-            Q(title__icontains = search_text) | # and - |
-            Q(text__icontains=search_text) |
-            Q(text2__icontains=search_text) |
-            Q(text3__icontains=search_text)
-        )
-        return q
 
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['first_name'] = Celebrity
-        context['surname'] = Celebrity
-        context['birth_date'] = Celebrity
-        context['image'] = Celebrity
-        context['short_bio'] = Celebrity
-        return context
 
 
 
 class CelebrityDetailView(DetailView):
     model = Celebrity
-    template_name = 'pages/celebrities.html'
+    template_name = 'pages/celebrity.html'
     context_object_name = 'celebrity'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['first_name'] = Celebrity
-        context['surname'] = Celebrity
-        context['birth_date'] = Celebrity
-        context['biography'] = Celebrity
-        context['country'] = Celebrity
-        context['image'] = Celebrity
-        context['is_alive'] = Celebrity
-        context['short_bio'] = Celebrity
-        context['role'] = Celebrity
-
-        return context
 
 #     def post(self, request, *args, **kwargs):
 #         form = CommentForm(request.POST)
