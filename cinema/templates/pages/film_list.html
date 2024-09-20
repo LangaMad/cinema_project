@@ -41,10 +41,7 @@
 					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img src="{{ film.poster.url }}" alt="" >
-								<a href="{% url 'film_details' film.id %}" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
+								<a href="{% url 'film_details' film.id %}"><img src="{{ film.poster.url }}" alt="" ></a>
 							</div>
 							<div class="portfolio-content">
 								<h2><a href="{% url 'film_details' film.id %}" title="">{{ film.name }}</a></h2>

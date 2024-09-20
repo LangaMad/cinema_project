@@ -61,7 +61,7 @@
 										</div>
                                       {% for d in directors %}
 										<div class="transformers-right">
-											{{ d.surname }} {{ d.first_name }},
+											{{ d.surname }} {{ d.first_name }} ,
 										</div>
                                       {% endfor %}
 									</li>
@@ -71,7 +71,27 @@
 										</div>
                                       {% for actor in actors %}
 										<div class="transformers-right">
-											{{ actor.surname }} {{ actor.first_name }}
+											{{ actor.surname }} {{ actor.first_name }} ,
+										</div>
+                                      {% endfor %}
+									</li>
+									<li>
+										<div class="transformers-left">
+											Screenwriter:
+										</div>
+                                      {% for s in screenwriter %}
+										<div class="transformers-right">
+											{{ s.surname }} {{ s.first_name }} ,
+										</div>
+                                      {% endfor %}
+									</li>
+									<li>
+										<div class="transformers-left">
+											Producer:
+										</div>
+                                      {% for p in producer %}
+										<div class="transformers-right">
+											{{ p.surname }} {{ p.first_name }} ,
 										</div>
                                       {% endfor %}
 									</li>
@@ -128,6 +148,80 @@
 				</div>
 			</div>
 		</section><!-- transformers area end -->
+
+		<section class="video ptb-90">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-film"></i> Кадры из фильма</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+                    <div class="col-md-12">
+						<div class="video-slider mt-20">
+							{% for f in frames %}
+							<div class="video-area">
+								<img src="{{ f.frame.url }}" alt="video" >
+							</div>
+							{% endfor %}
+						</div>
+                    </div>
+				</div>
+			</div>
+		</section><!-- video section end -->
+		<section class="video ptb-60">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-film"></i>Смотреть фильм</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+                    <div class="col-md-9">
+						<div class="video-area">
+							<img src="{{ film.film_poster.url }}" alt="video" >
+							<a href="{{ film.film.url }}" class="popup-youtube">
+								<i class="icofont icofont-ui-play"></i>
+							</a>
+							<div class="video-text">
+								<h2>{{ film.name }}</h2>
+								<div class="review">
+									<div class="author-review">
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+									</div>
+									<h4>{{ film.raiting.rait }}</h4>
+								</div>
+							</div>
+
+						</div>
+                    </div>
+					<div class="col-md-3">
+						{% for t in trailer %}
+								<div class="row">
+									<div class="col-md-12 col-sm-6">
+								<div class="video-area">
+									<img src="{{ t.image.url }}" alt="video" />
+									<a href="{{ t.url }}" class="popup-youtube">
+										<i class="icofont icofont-ui-play"></i>
+									</a>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- video section end -->
 		<!-- details area start -->
 		<section class="details-area">
 			<div class="container">
@@ -135,10 +229,10 @@
 					<div class="col-lg-9">
 						<div class="details-content">
 							<div class="details-overview">
-								<h2>Description</h2>
+								<h2>Описание фильма:</h2>
                               <p>{{ film.film_description }}</p>
 							<div class="details-reply">
-								<h2>Leave a Reply</h2>
+								<h2>Оставить отзыв:</h2>
 								<form action="#">
 									<div class="row">
 										<div class="col-lg-4">
@@ -172,6 +266,7 @@
 								<a class="theme-btn theme-btn2" href="#">Post Comment</a>
 								<p>You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
 							</div>
+
 							<div class="details-thumb">
 								<div class="details-thumb-prev">
 									<div class="thumb-icon">
@@ -184,7 +279,7 @@
 								</div>
 								<div class="details-thumb-next">
 									<div class="thumb-text">
-										<h4>Next Post</h4>
+										<a href="f.id +1"><h4>Next Post</h4></a>
 										<p>Standard Post With Preview Image</p>
 									</div>
 									<div class="thumb-icon">
