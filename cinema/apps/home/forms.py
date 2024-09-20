@@ -1,36 +1,19 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from .models import VacancyAnswer
-class VacancyAnswerForm(UserCreationForm):
-    name = forms.CharField(widget=forms.TextInput(
-        attrs={'placeholder': 'Name',
-               'class':'form-control'}))
-    lastname = forms.CharField(widget=forms.TextInput(
-        attrs={'placeholder': 'Lastname',
-               'class':'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(
-        attrs={'placeholder': 'Email',
-               'class':'form-control'}))
-    phone = forms.CharField(widget=forms.CharField(
-        attrs={'placeholder': 'Phone',
-               'class':'form-control'}))
-    birth_year = forms.DateField(widget=forms.DateInput(
-        attrs={'placeholder': 'Birth_year',
-               'class': 'form-control'}))
-    experience = forms.IntegerField(widget=forms.NumberInput(
-        attrs={'placeholder': 'Experience',
-               'class': 'form-control'}))
-    city = forms.CharField(widget=forms.TextInput(
-        attrs={'placeholder': 'City',
-               'class': 'form-control'}))
-    diploma = forms.CharField(widget=forms.TextInput(
-        attrs={'placeholder': 'Diploma',
-               'class': 'form-control'}))
-    text = forms.CharField(widget=forms.TextInput(
-        attrs={'placeholder': 'Text',
-               'class': 'form-control'}))
 
-
+class VacancyAnswerForm(forms.ModelForm):
     class Meta:
         model = VacancyAnswer
-        fields = ('name','lastname', 'email', 'phone', 'birth_year','experience','city','diploma', "text")
+        fields = ('name', 'lastname', 'surname', 'email', 'phone', 'birth_year', 'experience', 'city', 'diploma', 'text')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+            'lastname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Lastname'}),
+            'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Surname'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),  # Исправлено
+            'birth_year': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Birth Year', 'type': 'date'}),
+            'experience': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Experience'}),
+            'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
+            'diploma': forms.FileInput(attrs={'class': 'form-control'}),
+            'text': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your message'}),
+        }

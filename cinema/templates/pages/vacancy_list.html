@@ -11,6 +11,7 @@
 				<h2>LOGIN</h2>
 				<form action="#">
 					<h6>USERNAME OR EMAIL ADDRESS</h6>
+
 					<input type="text" />
 					<h6>PASSWORD</h6>
 					<input type="text" />
@@ -265,132 +266,66 @@
 			</div>
 		</div><!-- header section end -->
 		<!-- breadcrumb area start -->
+
 		<section class="breadcrumb-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
+
 						<div class="breadcrumb-area-content">
-							<h1>Vacancy_list</h1>
+							<h1>Вакансии</h1>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</section><!-- breadcrumb area end -->
 		<!-- transformers area start -->
-		<section class="transformers-area">
-			<div class="container">
-				<div class="transformers-box">
-					<div class="row flexbox-center">
-						<div class="col-lg-5 text-lg-left text-center">
-							<div class="transformers-content">
-								<img src="assets/img/slide2.png" alt="about" />
-							</div>
-						</div>
-						<div class="col-lg-7">
-							<div class="transformers-content">
-								<h2>Title</h2>
-								<ul>
 
-									<li>
-										<div class="transformers-left">
-											Text:
-										</div>
-										<div class="transformers-right">
-											Ошибка, с которой вы столкнулись, FieldError: Cannot resolve keyword 'release' into field, говорит о том, что вы пытаетесь выполнить сортировку или фильтрацию в Django с использованием поля под названием release, но это поле отсутствует в модели, которую вы запрашиваете. Django указывает на доступные поля, которые есть в модели: id и image.
-										</div>
-									</li>
-									<li>
-										<div class="transformers-left">
-											Salary:
-										</div>
-										<div class="transformers-right">
-											100-1200$
-										</div>
-									</li>
+		 <section class="transformers-area">
+        <div class="container">
+            {% for vacancy in vacancies %}
+                <div class="transformers-box">
+                    <div class="row flexbox-center">
+                        <div class="col-lg-5 text-lg-left text-center">
+                            <div class="transformers-content">
+								<img src="{{ vacancy.image.url }}" alt="{{ vacancy.title }}" />
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="transformers-content">
+                                <h2>{{ vacancy.title }}</h2>
+                                <ul>
+                                    <li>
+                                        <div class="transformers-left">
+                                            Текст:
+                                        </div>
+                                        <div class="transformers-right">
+                                            {{ vacancy.text }}
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="transformers-left">
+                                            Зарплата:
+                                        </div>
+                                        <div class="transformers-right">
+                                            {{ vacancy.salary }}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'vacancy_detail' vacancy.id %}" class="theme-btn"><i class="icofont icofont-ticket"></i> Откликнуться на вакансию</a>
+                </div>
+            {% empty %}
+                <p>Вакансии не найдены.</p>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- transformers area end -->
 
-								</ul>
-							</div>
-						</div>
-					</div>
-					<a href="#" class="theme-btn"><i class="icofont icofont-ticket"></i> Answer to Vacancy</a>
-				</div>
-			</div>
-						<div class="container">
-				<div class="transformers-box">
-					<div class="row flexbox-center">
-						<div class="col-lg-5 text-lg-left text-center">
-							<div class="transformers-content">
-								<img src="assets/img/slide2.png" alt="about" />
-							</div>
-						</div>
-						<div class="col-lg-7">
-							<div class="transformers-content">
-								<h2>Title</h2>
-								<ul>
-
-									<li>
-										<div class="transformers-left">
-											Text:
-										</div>
-										<div class="transformers-right">
-											Ошибка, с которой вы столкнулись, FieldError: Cannot resolve keyword 'release' into field, говорит о том, что вы пытаетесь выполнить сортировку или фильтрацию в Django с использованием поля под названием release, но это поле отсутствует в модели, которую вы запрашиваете. Django указывает на доступные поля, которые есть в модели: id и image.
-										</div>
-									</li>
-									<li>
-										<div class="transformers-left">
-											Salary:
-										</div>
-										<div class="transformers-right">
-											100-1200$
-										</div>
-									</li>
-
-								</ul>
-							</div>
-						</div>
-					</div>
-					<a href="#" class="theme-btn"><i class="icofont icofont-ticket"></i> Answer to Vacancy</a>
-				</div>
-			</div>
-			<div class="container">
-				<div class="transformers-box">
-					<div class="row flexbox-center">
-						<div class="col-lg-5 text-lg-left text-center">
-							<div class="transformers-content">
-								<img src="assets/img/slide2.png" alt="about" />
-							</div>
-						</div>
-						<div class="col-lg-7">
-							<div class="transformers-content">
-								<h2>Title</h2>
-								<ul>
-
-									<li>
-										<div class="transformers-left">
-											Text:
-										</div>
-										<div class="transformers-right">
-											Ошибка, с которой вы столкнулись, FieldError: Cannot resolve keyword 'release' into field, говорит о том, что вы пытаетесь выполнить сортировку или фильтрацию в Django с использованием поля под названием release, но это поле отсутствует в модели, которую вы запрашиваете. Django указывает на доступные поля, которые есть в модели: id и image.
-										</div>
-									</li>
-									<li>
-										<div class="transformers-left">
-											Salary:
-										</div>
-										<div class="transformers-right">
-											100-1200$
-										</div>
-									</li>
-
-								</ul>
-							</div>
-						</div>
-					</div>
-					<a href="#" class="theme-btn"><i class="icofont icofont-ticket"></i> Answer to Vacancy</a>
-				</div>
-			</div>
-
-		</section><!-- transformers area end -->
+    <!-- Остальная часть вашего кода -->
 		<!-- details area start -->
 		<section class="details-area">
 			<div class="container">
