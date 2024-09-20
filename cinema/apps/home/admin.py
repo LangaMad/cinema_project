@@ -20,6 +20,7 @@ class AboutUsAdmin(admin.ModelAdmin):
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'title',
         'text',
         'image',

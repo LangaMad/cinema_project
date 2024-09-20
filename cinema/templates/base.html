@@ -103,33 +103,35 @@
                     </div>
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<h4>Legal</h4>
+							<h4>About Us</h4>
 							<ul>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Security</a></li>
+								<li><a href="{% url 'about_us' %}">Terms of Use</a></li>
+								<li><a href="{% url 'about_us' %}">Privacy Policy</a></li>
+								<li><a href="{% url 'about_us' %}">Security</a></li>
 							</ul>
 						</div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<h4>Account</h4>
+							<h4>Agreement</h4>
 							<ul>
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">Watchlist</a></li>
-								<li><a href="#">Collections</a></li>
-								<li><a href="#">User Guide</a></li>
+								<li><a href="{% url 'agreement' %}">My Account</a></li>
+								<li><a href="{% url 'agreement' %}">Watchlist</a></li>
+								<li><a href="{% url 'agreement' %}">Collections</a></li>
+								<li><a href="{% url 'agreement' %}">User Guide</a></li>
 							</ul>
 						</div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<h4>Newsletter</h4>
-							<p>Subscribe to our newsletter system now to get latest news from us.</p>
-							<form action="#">
-								<input type="text" placeholder="Enter your email.."/>
-								<button>SUBSCRIBE NOW</button>
-							</form>
+							<h4>Vacansys</h4>
+							<ul>
+								<li><a href="{% url 'vacancy_list' %}">My Account</a></li>
+								<li><a href="{% url 'vacancy_list' %}">Watchlist</a></li>
+								<li><a href="{% url 'vacancy_list' %}">Collections</a></li>
+								<li><a href="{% url 'vacancy_list' %}">User Guide</a></li>
+							</ul>
+
 						</div>
                     </div>
 				</div>
