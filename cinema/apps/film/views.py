@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 
 from .models import *
 from django.shortcuts import render
-
+from .forms import FilmCommentsForm
 from ..celebrities.models import Celebrity
 
 
@@ -15,6 +15,7 @@ class FilmListView(ListView):
     template_name = 'pages/film_list.html'
     context_object_name = 'films'
     queryset = Film.objects.all().order_by('-release')
+
 
 
 class FilmDetailView(DetailView):
@@ -32,7 +33,9 @@ class FilmDetailView(DetailView):
         context['producer'] = Celebrity.objects.filter(role__name="Продюссер")
         context['trailer'] = Trailer.objects.filter(film=self.object)
         context['frames'] = FilmFrame.objects.filter(film=self.object)
-        context['f'] = Film.objects.all()
+        context['previous_film'] = Film.objects.filter(id__lt=self.object.id).order_by('-id').first()
+        context['next_film'] = Film.objects.filter(id__gt=self.object.id).order_by('id').first()
+        context['form'] = FilmCommentsForm()
         return context
 
 
