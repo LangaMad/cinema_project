@@ -22,7 +22,7 @@ class AboutUs(models.Model):
 class Vacancy(models.Model):
     title = models.CharField('Title', max_length=200)
     text = models.TextField('Text')
-    image = models.ImageField('Image', upload_to='images')
+    image = models.ImageField('Image', upload_to='images',  blank=True, null=True)
     salary = models.PositiveIntegerField('Salary')
 
     def __str__(self):

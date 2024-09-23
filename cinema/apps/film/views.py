@@ -2,9 +2,10 @@
 from django.views.generic import ListView, DetailView
 
 from .models import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import FilmCommentsForm
 from ..celebrities.models import Celebrity
+from ..comments.models import FilmComments
 
 
 # Create your views here.
@@ -36,7 +37,19 @@ class FilmDetailView(DetailView):
         context['previous_film'] = Film.objects.filter(id__lt=self.object.id).order_by('-id').first()
         context['next_film'] = Film.objects.filter(id__gt=self.object.id).order_by('id').first()
         context['form'] = FilmCommentsForm()
+        context['comments'] = FilmComments.objects.filter(post=self.object)
         return context
+
+
+    def post(self, request, *args, **kwargs):
+        form = FilmCommentsForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = self.get_object()
+            comment.author = request.user
+            comment.save()
+            return redirect('film_details', pk=self.get_object().pk)
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 

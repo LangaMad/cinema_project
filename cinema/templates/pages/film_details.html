@@ -240,16 +240,28 @@
 								<h2>Описание фильма:</h2>
                               <p>{{ film.film_description }}</p>
 							</div>
+							<div class="details-overview">
+								<h2>Отзывы к фильму:</h2>
+								{% for comment in comments %}
+                              <p> {{ comment.author }}</p>
+								<p>   {{ comment.created_at }}</p>
+								<p>   {{ comment.text }}</p>
+								<br>
+								<br>
+								{% endfor %}
+							</div>
 							<div class="details-reply">
+
 								<h2>Оставить отзыв:</h2>
 								<form action="#" method="post">
 									{% csrf_token %}
-									{{ form.author }}
-									{{ form.text }}
+
+
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="textarea-container">
-												<textarea placeholder="Type Here Message"></textarea>
+<!--												<textarea placeholder="Type Here Message"></textarea>-->
+												{{ form.text }}
 												<button type="submit"><a class="theme-btn theme-btn2" href="#">Post Comment</a></button>
 											</div>
 										</div>

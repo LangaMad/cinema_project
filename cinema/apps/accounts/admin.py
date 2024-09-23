@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-
+from .models import *
 
 # Register your models here.
 
 @admin.register(User)
-class Register_admin(admin.ModelAdmin):
+class LogUser_admin(admin.ModelAdmin):
     list_display = [
         'username',
         'email',
@@ -14,6 +14,6 @@ class Register_admin(admin.ModelAdmin):
         'city',
         'gender',
         'about',
-        'fav_movies'
+
 
     ]
