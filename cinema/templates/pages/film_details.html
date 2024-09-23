@@ -21,7 +21,9 @@
 					<div class="row flexbox-center">
 						<div class="col-lg-5 text-lg-left text-center">
 							<div class="transformers-content">
+								{% if film.poster %}
 								<img src="{{ film.poster.url }}" alt="about" >
+								{% endif %}
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -169,6 +171,7 @@
 				<hr />
 				<div class="row">
                     <div class="col-md-12">
+						{% if frames %}
 						<div class="video-slider mt-20">
 							{% for f in frames %}
 							<div class="video-area">
@@ -176,6 +179,7 @@
 							</div>
 							{% endfor %}
 						</div>
+						{% endif %}
                     </div>
 				</div>
 			</div>
@@ -192,40 +196,45 @@
 				<hr />
 				<div class="row">
                     <div class="col-md-9">
+						{% if film.film_poster %}
 						<div class="video-area">
-							<img src="{{ film.film_poster.url }}" alt="video" >
-							<a href="{{ film.film.url }}" class="popup-youtube">
-								<i class="icofont icofont-ui-play"></i>
-							</a>
-							<div class="video-text">
-								<h2>{{ film.name }}</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>{{ film.raiting.rait }}</h4>
-								</div>
-							</div>
-
+							<video
+							  controls
+							  src="{{ film.film.url }}"
+							  poster="{{ film.film_poster.url }}"
+							  width="820">
+							  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+							  and watch it with your favorite video player!
+							</video>
 						</div>
+						{% endif %}
                     </div>
+					{% if trailer %}
 					<div class="col-md-3">
 						{% for t in trailer %}
-								<div class="row">
-									<div class="col-md-12 col-sm-6">
+							<div class="row">
+								<div class="col-md-12 col-sm-6">
 								<div class="video-area">
-									<img src="{{ t.image.url }}" alt="video" />
+								{% if t.video %}
+									<video
+									  controls
+									  src="{{ t.video.url }}"
+									  poster="{{ t.image.url }}"
+									  width="240">
+									  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+									  and watch it with your favorite video player!
+									</video>
+								{% else %}
+									<img src="{{ t.image.url }}" alt="video" >
 									<a href="{{ t.url }}" class="popup-youtube">
 										<i class="icofont icofont-ui-play"></i>
 									</a>
+								{% endif %}
 								</div>
 							</div>
-							{% endfor %}
+						{% endfor %}
 						</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -257,26 +266,26 @@
 								</form>
 							</div>
 
-							<div class="details-thumb">
+							<div class="details-thumb {% if not next_film %}hidden{% endif %}">
 								<div class="details-thumb-prev">
 									<div class="thumb-icon">
+										{% if previous_film %}
 										<i class="icofont icofont-simple-left"></i>
 									</div>
 									<div class="thumb-text">
-										{% if previous_film %}
-											<a href="{% url 'film_details' previous_film.id %}"><h4>Previous Post</h4></a>
+											<a href="{% url 'film_details' previous_film.id %}"><h3>Previous Post</h3></a>
 										{% endif %}
 									</div>
 								</div>
-								<div class="details-thumb-next">
+								<div class="details-thumb-next {% if not next_film %}hidden{% endif %}">
 									<div class="thumb-text">
 										{% if next_film %}
-											<a href="{% url 'film_details' next_film.id %}"><h4>Next Post</h4></a>
-										{% endif %}
+											<a href="{% url 'film_details' next_film.id %}"><h3>Next Post</h3></a>
 									</div>
 									<div class="thumb-icon">
 										<i class="icofont icofont-simple-right"></i>
 									</div>
+									{% endif %}
 								</div>
 							</div>
 						</div>
