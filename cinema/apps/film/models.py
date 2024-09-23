@@ -29,9 +29,11 @@ class Raiting(models.Model):
 class Film(models.Model):
     name = models.CharField('Название фильма', max_length=100)
     origin_name = models.CharField('Оригинальное название', max_length=100)
-    poster = models.ImageField('Изображение', upload_to='images/',
+    poster = models.ImageField('Постер фильма', upload_to='images/',
                               blank=True, null=True)
     film = models.FileField('Фильм', upload_to='videos/', blank=True, null=True)
+    film_poster = models.ImageField('Фото фильма', upload_to='film_image/',
+                              blank=True, null=True)
     release = models.DateTimeField('Дата релиза')
     country = models.CharField('Страна', max_length=100)
     genre = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='genre_films')
@@ -45,7 +47,7 @@ class Film(models.Model):
 
 class FilmFrame(models.Model):
     film = models.ForeignKey(Film, related_name='film_frames',verbose_name='Кадр', on_delete=models.CASCADE)
-    frame = models.ImageField(upload_to='images/',null=True,blank=True)
+    frame = models.ImageField(upload_to='frames/',null=True,blank=True)
 
     def __str__(self):
         return self.film.name
@@ -60,6 +62,8 @@ class Trailer(models.Model):
     video = models.FileField(upload_to='videos/', null=True, blank=True,
                              validators=[
                                  FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
+    image = models.ImageField('Фото трейлера', upload_to='trailer_images/')
+    url = models.URLField('ссылка на трейлер')
 
     def __str__(self):
         return self.film.name

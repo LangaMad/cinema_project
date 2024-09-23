@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('apps.home.urls')),
     path('film/', include('apps.film.urls')),
     # path('news/', include('apps.news.urls')),
-    # path('celebrities/', include('apps.celebrities.urls')),
+    path('celebrities/', include('apps.celebrities.urls')),
     # path('comments/', include('apps.comments.urls'))
 ]
 
