@@ -1,11 +1,12 @@
 from django.db.models import Q
-from django.views.generic import ListView, DetailView
+
+from django.views.generic import ListView, DetailView,View
 
 from .models import *
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import FilmCommentsForm
 from ..celebrities.models import Celebrity
-
+from ..accounts.models import User
 
 # Create your views here.
 
@@ -15,7 +16,7 @@ class FilmListView(ListView):
     template_name = 'pages/film_list.html'
     context_object_name = 'films'
     queryset = Film.objects.all().order_by('-release')
-
+    paginate_by = 2
 
 
 class FilmDetailView(DetailView):
@@ -39,6 +40,16 @@ class FilmDetailView(DetailView):
         return context
 
 
+class AddToFavoritesView(View):
+    def post(self, request, *args, **kwargs):
+        film_id = request.POST.get('film_id')  # Получаем ID фильма из POST-запроса
+        film = get_object_or_404(Film, id=film_id)  # Находим фильм по ID
+
+        if request.user.is_authenticated:
+            request.user.fav_movies.add(film)  # Добавляем фильм в избранное
+            return redirect('user_page')  # Перенаправление на страницу профиля
+
+        return redirect('signin')
 
 
 

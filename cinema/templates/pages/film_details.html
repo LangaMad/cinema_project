@@ -154,7 +154,13 @@
 							</div>
 						</div>
 					</div>
-					<a href="#" class="theme-btn"><i class="icofont icofont-ticket"></i> Добавить в избранные</a>
+					<form action="{% url 'add_to_favorites' %}" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="film_id" value="{{ film.id }}">
+					<button type="submit" class="theme-btn">
+						<i class="icofont icofont-ticket"></i> Добавить в избранные
+					</button>
+				</form>
 				</div>
 			</div>
 		</section><!-- transformers area end -->
