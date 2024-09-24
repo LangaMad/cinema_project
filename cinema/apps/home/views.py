@@ -22,6 +22,9 @@ class VacancyListView(ListView):
     context_object_name = 'vacancies'
     queryset = Vacancy.objects.all()
 
+
+
+
 class VacancyDetailView(DetailView):
     model = Vacancy
     template_name = 'pages/vacancy_detail.html'
