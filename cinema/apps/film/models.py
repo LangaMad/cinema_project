@@ -71,3 +71,4 @@ class Trailer(models.Model):
     class Meta:
         verbose_name = 'Трейлер'
         verbose_name_plural = 'Трейлеры'
+

@@ -21,9 +21,13 @@
 					<div class="row flexbox-center">
 						<div class="col-lg-5 text-lg-left text-center">
 							<div class="transformers-content">
-
+								{% if user_profile.avatar.url%}
 								<img src="{{user_profile.avatar.url  }}" alt="about" >
+								{% else %}
+								<img src="cinema_project/cinema/media/images/Бред_Пит.jpg" alt="about" >
+{%endif%}
 							</div>
+
 						</div>
 						<div class="col-lg-7">
 							<div class="transformers-content">
