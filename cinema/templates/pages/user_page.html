@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <section class="breadcrumb-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-area-content">
+							<h1>{{user_profile.username}}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- breadcrumb area end -->
+		<!-- transformers area start -->
+		<section class="transformers-area">
+			<div class="container">
+				<div class="transformers-box">
+					<div class="row flexbox-center">
+						<div class="col-lg-5 text-lg-left text-center">
+							<div class="transformers-content">
+
+								<img src="{{user_profile.avatar.url  }}" alt="about" >
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div class="transformers-content">
+
+								<h2>{{ user_profile.username }}</h2>
+								<p>{{ film.origin_name }}</p>
+								<ul>
+									<li>
+										<div class="transformers-left">
+											Username:
+										</div>
+										<div class="transformers-right">
+										<h2>{{ user_profile.username }}</h2>
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Email:
+										</div>
+										<div class="transformers-right">
+											<h2>{{ user_profile.email }}</h2>
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Birthday:
+										</div>
+										<div class="transformers-right">
+										<h2>{{ user_profile.birth_date }}</h2>
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											City:
+										</div>
+										<div class="transformers-right">
+										<h2>{{ user_profile.city }}</h2>
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Gender:
+										</div>
+										<div class="transformers-right">
+										<h2>{{ user_profile.gender }}</h2>
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											About:
+										</div>
+										<div class="transformers-right">
+										<h2>{{ user_profile.about }}</h2>
+										</div>
+
+
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- transformers area end -->
+
+		<section class="video ptb-90">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-film"></i> Любимые Фильмы</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+                    <div class="col-md-12">
+					  <div class="video-slider mt-20">
+                    <!-- Проход по списку любимых фильмов -->
+                    {% for movie in user_profile.fav_movies.all %}
+                        <div class="video-area">
+                            <!-- Отображаем постер и название фильма -->
+                            <a href="{% url 'film_details' movie.id %}">
+                                <img src="{{ movie.poster.url }}" alt="{{ movie.name }}" >
+                                <p>{{ movie.name }}</p>
+                            </a>
+                        </div>
+                    {% empty %}
+                        <p>У вас еще нет избранных фильмов.</p>
+                    {% endfor %}
+                </div>
+                    </div>
+				</div>
+			</div>
+		</section><!-- video section end -->
+ 		<!-- details area start -->
+
+{% endblock %}
