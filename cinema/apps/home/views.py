@@ -15,7 +15,7 @@ class HomePageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['film'] = Film.objects.all().order_by('-release')
         context['solofilm'] = Film.objects.first()
-        context['allfilms'] = Film.objects.all().order_by('-raiting')
+        context['allfilms'] = Film.objects.all().order_by('-average_rating')
         return context
 
 
