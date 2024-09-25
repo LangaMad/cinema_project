@@ -52,10 +52,10 @@
 						<form action="#">
 							<select>
 								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
+								<option value='{% url "celebrity_list" %}' >Celebrities</option>
 								<option value="Movies">Movies</option>
 							</select>
-							<input type="text"/>
+							<input type="text" method = "get" action = '{% url "celebrity_list" %}'>
 							<button><i class="icofont icofont-search"></i></button>
 						</form>
 						<ul>
@@ -69,7 +69,7 @@
                             <ul id="primary-menu">
                                 <li><a class="active" href="{%url 'home' %}">Home</a></li>
                                 <li><a href="movies.html">Movies</a></li>
-                                <li><a href="celebrities.html">CelebritiesList</a></li>
+                                <li><a href="{% url 'celebrity_list' %}" title="">Celebrities List</a></li>
                                 <li><a href="top-movies.html">Top Movies</a></li>
                                 <li><a href="blog.html">News</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>

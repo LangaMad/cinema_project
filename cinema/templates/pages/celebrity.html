@@ -77,15 +77,24 @@
 											Alive:
 										</div>
 										<div class="transformers-right">
-											{{ celebrity.is_alive }}
+
+											{% if celebrity.is_alive %}
+											Да
+											{% else %}
+											Нет
+											{% endif %}
+
 										</div>
+
 									</li>
 									<li>
 										<div class="transformers-left">
 											Roles:
 										</div>
 										<div class="transformers-right">
-											{{ celebrity.role }}
+											{% for rol in celebrity.role.all %}
+												{{ rol.name }}
+											{% endfor %}
 										</div>
 									</li>
 									<li>
@@ -116,72 +125,34 @@
 								<h2>Biography</h2>
 								<p>{{ celebrity.biography }}</p>
 							</div>
-							<div class="details-reply">
-								<h2>Leave a Reply</h2>
-								<form action="#">
-									<div class="row">
-										<div class="col-lg-4">
-											<div class="select-container">
-												<input type="text" placeholder="Name"/>
-												<i class="icofont icofont-ui-user"></i>
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="select-container">
-												<input type="text" placeholder="Email"/>
-												<i class="icofont icofont-envelope"></i>
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="select-container">
-												<input type="text" placeholder="Phone"/>
-												<i class="icofont icofont-phone"></i>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="textarea-container">
-												<textarea placeholder="Type Here Message"></textarea>
-												<button><i class="icofont icofont-send-mail"></i></button>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="details-comment">
-								<a class="theme-btn theme-btn2" href="#">Post Comment</a>
-								<p>You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
-							</div>
-							<div class="details-thumb">
-								<div class="details-thumb-prev">
-									<div class="thumb-icon">
-										<i class="icofont icofont-simple-left"></i>
-									</div>
-									<div class="thumb-text">
-										<h4>Previous Post</h4>
-										<p>Standard Post With Gallery</p>
-									</div>
-								</div>
-								<div class="details-thumb-next">
-									<div class="thumb-text">
-										<h4>Next Post</h4>
-										<p>Standard Post With Preview Image</p>
-									</div>
-									<div class="thumb-icon">
-										<i class="icofont icofont-simple-right"></i>
-									</div>
-								</div>
-							</div>
 						</div>
-					</div>
-					<div class="col-lg-3 text-center text-lg-left">
-					    <div class="portfolio-sidebar">
-							<img src="assets/img/sidebar/sidebar1.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar2.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar4.png" alt="sidebar" />
-						</div>
+						<div class="details-thumb {% if not next_celebrity %}hidden{% endif %}">
+                <div class="details-thumb-prev">
+                  <div class="thumb-icon">
+                    {% if previous_celebrity %}
+                    <i class="icofont icofont-simple-left"></i>
+                  </div>
+                  <div class="thumb-text">
+                      <a href="{% url 'celebrity_detail' previous_celebrity.id %}"><h3>Previous celebrity</h3></a>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="details-thumb-next {% if not next_celebrity %}hidden{% endif %}">
+                  <div class="thumb-text">
+                    {% if next_celebrity %}
+                      <a href="{% url 'celebrity_detail' next_celebrity.id %}"><h3>Next celebrity</h3></a>
+                  </div>
+                  <div class="thumb-icon">
+                    <i class="icofont icofont-simple-right"></i>
+                  </div>
+                  {% endif %}
+				</div>
+	</div>
+
 					</div>
 				</div>
 			</div>
 		</section><!-- details area end -->
+
 
 {% endblock %}
