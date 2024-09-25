@@ -277,10 +277,20 @@
 			<div class="container">
 				<div class="row flexbox-center">
 					<div class="col-lg-6 text-center text-lg-left">
+
 					    <div class="section-title">
-							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+								<h1><i class="icofont icofont-movie"></i> Celebrities</h1>
 						</div>
+
 					</div>
+
+					<div class="header-right">
+						<form method="get" action="{% url 'celebrity_list' %}">
+							<input type="text" name="query" style="color: rgba(255, 255, 255);" placeholder="Поиск"/>
+							<button type="submit"><i class="icofont icofont-search"></i></button>
+						</form>
+					</div>
+
 				</div>
 				<hr />
 				<div class="row portfolio-item">
