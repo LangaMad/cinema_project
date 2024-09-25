@@ -1,10 +1,14 @@
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginForm
+from django.urls import reverse_lazy
+from django.contrib import messages
+
+from .forms import SignUpForm, LoginForm,   ProfileSettingsForm
 from .models import User
-from django.views.generic import CreateView, FormView, TemplateView
+from django.views.generic import CreateView, FormView, TemplateView, UpdateView
 
 
 # Create your views here.
@@ -53,10 +57,33 @@ def logout1(request):
             return redirect('home')
 
 
-class UserpageView(LoginRequiredMixin, TemplateView):
+
+
+class UserpageView(TemplateView):
     template_name = 'pages/user_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_profile'] = self.request.user  # Передаем текущего пользователя в контекст
-        return context
+        context['user_profile'] = self.request.user
+        return  context
+
+class UserSettingsView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileSettingsForm
+    template_name = 'pages/user_settings.html'
+    success_url = reverse_lazy('user_page')
+
+    def get_object(self, queryset=None):
+         return self.request.user
+
+    def form_valid(self, form):
+        # Если форма валидна, сохраняем данные и выводим сообщение об успехе
+        messages.success(self.request, "Ваши данные были успешно обновлены!")
+        return super().form_valid(form)
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'pages/change_password.html'
+    success_url = reverse_lazy('user_page')  #
+
+    def form_valid(self, form):
+        messages.success(self.request, "Ваш пароль был успешно изменен!")
+        return super().form_valid(form)

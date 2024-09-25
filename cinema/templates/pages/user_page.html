@@ -4,117 +4,121 @@
 {% block content %}
 
         <section class="breadcrumb-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="breadcrumb-area-content">
-							<h1>{{user_profile.username}}</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section><!-- breadcrumb area end -->
-		<!-- transformers area start -->
-		<section class="transformers-area">
-			<div class="container">
-				<div class="transformers-box">
-					<div class="row flexbox-center">
-						<div class="col-lg-5 text-lg-left text-center">
-							<div class="transformers-content">
-								{% if user_profile.avatar.url%}
-								<img src="{{user_profile.avatar.url  }}" alt="about" >
-								{% else %}
-								<img src="cinema_project/cinema/media/images/Бред_Пит.jpg" alt="about" >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb-area-content">
+              <h1>{{user_profile.username}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- breadcrumb area end -->
+    <!-- transformers area start -->
+    <section class="transformers-area">
+      <div class="container">
+        <div class="transformers-box">
+          <div class="row flexbox-center">
+            <div class="col-lg-5 text-lg-left text-center">
+              <div class="transformers-content">
+                {% if user_profile.avatar.url%}
+                <img src="{{user_profile.avatar.url  }}" alt="about" >
+                {% else %}
+                <img src="cinema_project/cinema/media/images/Бред_Пит.jpg" alt="about" >
 {%endif%}
-							</div>
+              </div>
 
-						</div>
-						<div class="col-lg-7">
-							<div class="transformers-content">
+            </div>
+            <div class="col-lg-7">
+              <div class="transformers-content">
 
-								<h2>{{ user_profile.username }}</h2>
-								<p>{{ film.origin_name }}</p>
-								<ul>
-									<li>
-										<div class="transformers-left">
-											Username:
-										</div>
-										<div class="transformers-right">
-										<h2>{{ user_profile.username }}</h2>
-										</div>
-									</li>
+                <h2>{{ user_profile.username }}</h2>
+                <p>{{ film.origin_name }}</p>
+                <ul>
+                  <li>
+                    <div class="transformers-left">
+                      Username:
+                    </div>
+                    <div class="transformers-right">
+                    <h2>{{ user_profile.username }}</h2>
+                    </div>
+                  </li>
                                     <li>
-										<div class="transformers-left">
-											Email:
-										</div>
-										<div class="transformers-right">
-											<h2>{{ user_profile.email }}</h2>
-										</div>
-									</li>
+                    <div class="transformers-left">
+                      Email:
+                    </div>
+                    <div class="transformers-right">
+                      <h2>{{ user_profile.email }}</h2>
+                    </div>
+                  </li>
                                     <li>
-										<div class="transformers-left">
-											Birthday:
-										</div>
-										<div class="transformers-right">
-										<h2>{{ user_profile.birth_date }}</h2>
-										</div>
-									</li>
+                    <div class="transformers-left">
+                      Birthday:
+                    </div>
+                    <div class="transformers-right">
+                    <h2>{{ user_profile.birth_date }}</h2>
+                    </div>
+                  </li>
                                     <li>
-										<div class="transformers-left">
-											City:
-										</div>
-										<div class="transformers-right">
-										<h2>{{ user_profile.city }}</h2>
-										</div>
-									</li>
-									<li>
-										<div class="transformers-left">
-											Gender:
-										</div>
-										<div class="transformers-right">
-										<h2>{{ user_profile.gender }}</h2>
-										</div>
-									</li>
-									<li>
-										<div class="transformers-left">
-											About:
-										</div>
-										<div class="transformers-right">
-										<h2>{{ user_profile.about }}</h2>
-										</div>
-									</li>
-									<li>
-										<div  class="transformers-left">
-										<a href="#" >Settings</a>
-										</div>
-										<div class="transformers-right">
-										<h2></h2>
-										</div>
-									</li>
+                    <div class="transformers-left">
+                      City:
+                    </div>
+                    <div class="transformers-right">
+                    <h2>{{ user_profile.city }}</h2>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="transformers-left">
+                      Gender:
+                    </div>
+                    <div class="transformers-right">
+                    <h2>{{ user_profile.gender }}</h2>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="transformers-left">
+                      About:
+                    </div>
+                    <div class="transformers-right">
+                    <h2>{{ user_profile.about }}</h2>
+                    </div>
+                  </li>
+                  <li>
+                    <div  class="transformers-left">
+
+                    <a href="{% url 'user_settings' %}" >Settings</a>
+
+                    </div>
+                    <div class="transformers-right">
+                    <h2></h2>
+                    </div>
+                  </li>
 
 
 
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section><!-- transformers area end -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- transformers area end -->
 
-		<section class="video ptb-90">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-					    <div class="section-title pb-20">
-							<h1><i class="icofont icofont-film"></i> Любимые Фильмы</h1>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="row">
+
+
+    <section class="video ptb-90">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="section-title pb-20">
+              <h1><i class="icofont icofont-film"></i> Любимые Фильмы</h1>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
                     <div class="col-md-12">
-					  <div class="video-slider mt-20">
+            <div class="video-slider mt-20">
                     <!-- Проход по списку любимых фильмов -->
                     {% for movie in user_profile.fav_movies.all %}
                         <div class="video-area">
@@ -129,9 +133,9 @@
                     {% endfor %}
                 </div>
                     </div>
-				</div>
-			</div>
-		</section><!-- video section end -->
- 		<!-- details area start -->
+        </div>
+      </div>
+    </section><!-- video section end -->
+     <!-- details area start -->
 
 {% endblock %}
