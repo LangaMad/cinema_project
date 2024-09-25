@@ -55,12 +55,24 @@
 								<option value='{% url "celebrity_list" %}' >Celebrities</option>
 								<option value="Movies">Movies</option>
 							</select>
-							<input type="text" method = "get" action = '{% url "celebrity_list" %}'>
+							<input type="text"/>
 							<button><i class="icofont icofont-search"></i></button>
 						</form>
+												    {% csrf_token %}
+
 						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
+
+							{% if not request.user.is_authenticated %}
+							<li><a href="">Welcome Guest!</a></li>
+
+							<li><a  href="{% url 'signin' %}">Login</a></li>
+							<li><a  href="{% url 'signup' %}">Registration</a></li>
+							                            {% else %}
+							<li><a href="{% url 'user_page' %}">Welcome {{request.user.username}}</a></li>
+
+							<li><a  href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+
 						</ul>
 					</div>
 					<div class="menu-area">
@@ -70,6 +82,8 @@
                                 <li><a class="active" href="{%url 'home' %}">Home</a></li>
                                 <li><a href="movies.html">Movies</a></li>
                                 <li><a href="{% url 'celebrity_list' %}" title="">Celebrities List</a></li>
+                                <li><a href="{%url 'film_list' %}">Movies</a></li>
+                                <li><a href="">CelebritiesList</a></li>
                                 <li><a href="top-movies.html">Top Movies</a></li>
                                 <li><a href="blog.html">News</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>

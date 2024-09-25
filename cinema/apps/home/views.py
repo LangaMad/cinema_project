@@ -3,12 +3,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import *
 from .forms import *
+from ..film.models import Film
+
 
 # Create your views here.
 class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['film'] = Film.objects.all().order_by('-release').first()
+        return context
 class AboutUsView(TemplateView):
     template_name = 'pages/about_us.html'
 
@@ -21,6 +26,9 @@ class VacancyListView(ListView):
     template_name = 'pages/vacancy_list.html'
     context_object_name = 'vacancies'
     queryset = Vacancy.objects.all()
+
+
+
 
 class VacancyDetailView(DetailView):
     model = Vacancy

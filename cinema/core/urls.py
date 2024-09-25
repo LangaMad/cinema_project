@@ -26,6 +26,7 @@ urlpatterns = [
     # path('news/', include('apps.news.urls')),
     path('celebrities/', include('apps.celebrities.urls')),
     # path('comments/', include('apps.comments.urls'))
+    path('accounts/', include('apps.accounts.urls'))
 ]
 
 if settings.DEBUG:

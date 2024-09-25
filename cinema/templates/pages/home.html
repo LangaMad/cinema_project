@@ -1,35 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="login-area">
-			<div class="login-box">
-				<a href="#"><i class="icofont icofont-close"></i></a>
-				<h2>LOGIN</h2>
-				<form action="#">
-					<h6>USERNAME OR EMAIL ADDRESS</h6>
-					<input type="text" />
-					<h6>PASSWORD</h6>
-					<input type="text" />
-					<div class="login-remember">
-						<input type="checkbox" />
-						<span>Remember Me</span>
-					</div>
-					<div class="login-signup">
-						<span>SIGNUP</span>
-					</div>
-					<a href="#" class="theme-btn">LOG IN</a>
-					<span>Or Via Social</span>
-					<div class="login-social">
-						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
-						<a href="#"><i class="icofont icofont-social-twitter"></i></a>
-						<a href="#"><i class="icofont icofont-social-linkedin"></i></a>
-						<a href="#"><i class="icofont icofont-social-google-plus"></i></a>
-						<a href="#"><i class="icofont icofont-camera"></i></a>
-					</div>
-				</form>
-
-			</div>
-		</div>
 		<div class="buy-ticket">
 			<div class="container">
 				<div class="buy-ticket-area">
@@ -267,13 +238,17 @@
 					<div class="row hero-area-slide">
 						<div class="col-lg-6 col-md-5">
 							<div class="hero-area-content">
-								<img src="assets/img/slide2.png" alt="about" />
+							{% if film.poster %}
+    						<img src="{{ film.poster.url }}" alt="{{ film.name }}" />
+							{% else %}
+								<img src="assets/img/author.png" alt="Default Image" />
+							{% endif %}
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-7">
 							<div class="hero-area-content pr-50">
-								<h2>The Devil Princess</h2>
-								<div class="review">
+ 								<h2>{{ film.name }}</h2>
+ 								<div class="review">
 									<div class="author-review">
 										<i class="icofont icofont-star"></i>
 										<i class="icofont icofont-star"></i>
@@ -281,9 +256,9 @@
 										<i class="icofont icofont-star"></i>
 										<i class="icofont icofont-star"></i>
 									</div>
-									<h4>180k voters</h4>
+									<h4>{{film.raiting}}</h4>
 								</div>
-								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+								<p>{{film.film_description}}</p>
 								<h3>Cast:</h3>
 								<div class="slide-cast">
 									<div class="single-slide-cast">
@@ -313,7 +288,7 @@
 								</div>
 								<div class="slide-trailor">
 									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+									<a class="theme-btn theme-btn2" href="{}"><i class="icofont icofont-play"></i> Trailer</a>
 								</div>
 							</div>
 						</div>
