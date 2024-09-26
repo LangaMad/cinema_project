@@ -40,13 +40,13 @@ class User(AbstractUser):
     city = models.CharField('Город', max_length=50, blank=True, null=True)
     gender = models.CharField('Пол', choices=GENDER_CHOICE, default='male')
     about = models.TextField('О себе', blank=True, null=True)
-    # fav_movies = models.ManyToManyField('film.Film', related_name='favorite_film')
+    fav_movies = models.ManyToManyField('film.Film', related_name='favorite_film')
 
     objects = UserManager()
 
     def __str__(self):
         return self.username
 
-    # class Meta:
-    #     verbose_name='Пользователь'
-    #     verbose_name_plural = 'Пользователи'
+    class Meta:
+        verbose_name='Пользователь'
+        verbose_name_plural = 'Пользователи'

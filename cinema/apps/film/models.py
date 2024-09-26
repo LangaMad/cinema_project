@@ -41,9 +41,18 @@ class Film(models.Model):
     celebrity= models.ManyToManyField('celebrities.Celebrity',verbose_name='Celebrity', related_name='celebrity_films')
     budget = models.DecimalField('Бюджет', max_digits=15, decimal_places=2, blank=True, null=True)
     time = models.CharField('Время')
-    raiting = models.ForeignKey(Raiting, verbose_name='Рейтинг', on_delete=models.CASCADE)
+    average_rating = models.DecimalField('Средний рейтинг', max_digits=3, decimal_places=1, default=0.0)
+    rating_count = models.PositiveIntegerField(default=0)
     film_description = models.TextField('Описание фильма', blank=True, null=True)
 
+    def update_average_rating(self, new_rating):
+        if self.rating_count == 0:
+            self.average_rating = new_rating
+        else:
+            total_rating = (self.average_rating * self.rating_count + new_rating) / (self.rating_count + 1)
+            self.average_rating = total_rating
+        self.rating_count += 1
+        self.save()
 
 class FilmFrame(models.Model):
     film = models.ForeignKey(Film, related_name='film_frames',verbose_name='Кадр', on_delete=models.CASCADE)

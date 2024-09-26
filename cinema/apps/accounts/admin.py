@@ -18,3 +18,4 @@ class Register_admin(admin.ModelAdmin):
         #'fav_movies'
 
     ]
+    filter_horizontal = ['fav_movies']
