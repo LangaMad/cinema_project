@@ -1,20 +1,32 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
+
 from .models import Category, Tag, Post
 
-def category_list(request):
-    categories = Category.objects.all()
-    return render(request, 'category_list.html', {'categories': categories})
+class PostListView(ListView):
+    model = Post
+    template_name = 'pages/news_list.html'
+    context_object_name = 'news'
+    queryset = Post.objects.all().order_by('-created_at')
+    paginate_by = 2
 
-def tag_list(request):
-    tags = Tag.objects.all()
-    return render(request, 'tag_list.html', {'tags': tags})
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'pages/news_details.html'
+    context_object_name = 'post'
+    queryset = Post.objects.all()
 
-def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'post_list.html', {'posts': posts})
 
-def post_detail(request, id):
-    post = get_object_or_404(Post, id=id)
-    return render(request, 'post_detail.html', {'post': post})
+
+
+
+
+
+
+
+
+
+
+
 
 
