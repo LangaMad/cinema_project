@@ -16,6 +16,13 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
     queryset = Post.objects.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['tags'] = Tag.objects.all()
+        context['last_post'] = Post.objects.all()[:3]
+        return context
+
 
 
 
