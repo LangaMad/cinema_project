@@ -5,6 +5,7 @@
 
 		<!-- Page loader -->
 		<!-- header section start -->
+
 		<div class="login-area">
 			<div class="login-box">
 				<a href="#"><i class="icofont icofont-close"></i></a>
@@ -273,6 +274,7 @@
 					<div class="col-lg-12">
 
 						<div class="breadcrumb-area-content">
+
 							<h1>Вакансии</h1>
 						</div>
 
@@ -283,7 +285,12 @@
 		<!-- transformers area start -->
 
 		 <section class="transformers-area">
+
         <div class="container">
+			<form method="get" action="{% url 'vacancy_list' %}">
+                                        {{form.query}}
+							<button><i class="icofont icofont-search"></i></button>
+						</form>
             {% for vacancy in vacancies %}
                 <div class="transformers-box">
                     <div class="row flexbox-center">
