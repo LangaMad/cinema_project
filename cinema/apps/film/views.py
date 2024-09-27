@@ -60,9 +60,9 @@ class FilmDetailView(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        film = self.get_object()  # Получаем объект фильма
-        comment_form = FilmCommentsForm(request.POST)  # Форма для комментариев
-        rating_form = RatingForm(request.POST)  # Форма для рейтинга
+        film = self.get_object()
+        comment_form = FilmCommentsForm(request.POST)
+        rating_form = RatingForm(request.POST)
 
         if 'submit_comment' in request.POST and comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -71,13 +71,13 @@ class FilmDetailView(DetailView):
             comment.save()
             return redirect('film_details', pk=film.pk)
 
-            # Проверяем, была ли отправлена форма для рейтинга
+
         elif 'submit_rating' in request.POST and rating_form.is_valid():
             rating = int(rating_form.cleaned_data['rating'])
             film.update_average_rating(rating)
             return redirect('film_details', pk=film.pk)
 
-            # Если ни одна из форм не валидна, возвращаем контекст с обеими формами
+
         context = self.get_context_data(comment_form=comment_form, rating_form=rating_form)
         return self.render_to_response(context)
 

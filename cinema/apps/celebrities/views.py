@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 from .models import Celebrity
 from django.db.models import Q
 
-
+from ..film.models import Film
 
 
 # Create your views here.
@@ -59,6 +59,7 @@ class CelebrityDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['celebrity_film'] = Film.objects.all()[:3]
         context['previous_celebrity'] = Celebrity.objects.filter(id__lt=self.object.id).order_by('-id').first()
         context['next_celebrity'] = Celebrity.objects.filter(id__gt=self.object.id).order_by('id').first()
         return context
