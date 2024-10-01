@@ -55,21 +55,35 @@
 							<div class="text-center">
 								<img src="assets/img/blog-detail.png" alt="" />
 							</div>
+							<div class="details-overview">
+								<h2>Отзывы к фильму:</h2>
+								{% for comment1 in comment %}
+                              <p> {{ comment1.author.username }}</p>
+								<p>   {{ comment1.created_at }}</p>
+								<p>   {{ comment1.text }}</p>
+								<br>
+								<br>
+								{% endfor %}
+							</div>
 							<div class="details-reply">
-								<h2>Leave a Reply</h2>
-								<form action="#">
+							<div class="details-reply">
+								<h2>Оставить отзыв</h2>
+								<form action="#" method="post">
+									{% csrf_token %}
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="textarea-container">
-												<textarea placeholder="Type Here Message"></textarea>
-												<button><i class="icofont icofont-send-mail"></i></button>
+<!--												<textarea placeholder="Type Here Message"></textarea>-->
+												{{ form1.text }}
+											<!--	<i class="icofont icofont-send-mail"></i>-->
 											</div>
+											<button type="submit" name="submit_comment">Post Comment</button>
 										</div>
 									</div>
 								</form>
 							</div>
 							<div class="details-comment">
-								<a class="theme-btn theme-btn2" href="#">Post Comment</a>
+<!--								<a class="theme-btn theme-btn2" href="#">Post Comment</a>-->
 								<p>You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
 							</div>
 							<div class="details-thumb">
