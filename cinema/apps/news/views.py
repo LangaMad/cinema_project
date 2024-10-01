@@ -21,11 +21,15 @@ class NewsDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.get_object()
+        context['categories'] = Category.objects.all()
+        context['tags'] = Tag.objects.all()
+        context['last_post'] = Post.objects.all()[:3]
+
         context['comment'] = PostComment.objects.filter(post=post)
         context['form1'] = PostCommentsForm()
         return context
 
-    def post(self, request, *args, **kwargs):
+     def post(self, request, *args, **kwargs):
         form = PostCommentsForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)

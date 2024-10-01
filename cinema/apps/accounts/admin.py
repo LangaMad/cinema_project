@@ -15,7 +15,8 @@ class Register_admin(admin.ModelAdmin):
         'city',
         'gender',
         'about',
-        #'fav_movies'
+         #'fav_movies'
 
     ]
-    filter_horizontal = ['fav_movies']
+    filter_horizontal = ['fav_movies','friend']
+

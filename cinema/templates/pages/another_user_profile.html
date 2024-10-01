@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb-area-content">
-              <h1>{{user_profile.username}}</h1>
+              <h1>{{profile_user.username}}</h1>
             </div>
           </div>
         </div>
@@ -21,18 +21,18 @@
           <div class="row flexbox-center">
             <div class="col-lg-5 text-lg-left text-center">
               <div class="transformers-content">
-           {% if profile_user.avatar and profile_user.avatar.url %}
-        <img src="{{ profile_user.avatar.url }}" alt="Avatar">
+     {% if profile_user.avatar %}
+        <img src="{{ profile_user.avatar.url }}" alt="about">
     {% else %}
         <img src="/static/images/default_avatar.png" alt="Default Avatar">
     {% endif %}
-              </div>
+ </div>
 
             </div>
             <div class="col-lg-7">
               <div class="transformers-content">
 
-                <h2>{{ user_profile.username }}</h2>
+                <h2>{{ profile_user.username }}</h2>
                 <p>{{ film.origin_name }}</p>
                 <ul>
                   <li>
@@ -40,7 +40,7 @@
                       Username:
                     </div>
                     <div class="transformers-right">
-                    <h2>{{ user_profile.username }}</h2>
+                    <h2>{{ profile_user.username }}</h2>
                     </div>
                   </li>
                                     <li>
@@ -48,7 +48,7 @@
                       Email:
                     </div>
                     <div class="transformers-right">
-                      <h2>{{ user_profile.email }}</h2>
+                      <h2>{{ profile_user.email }}</h2>
                     </div>
                   </li>
                                     <li>
@@ -56,7 +56,7 @@
                       Birthday:
                     </div>
                     <div class="transformers-right">
-                    <h2>{{ user_profile.birth_date }}</h2>
+                    <h2>{{ profile_user.birth_date }}</h2>
                     </div>
                   </li>
                                     <li>
@@ -64,7 +64,7 @@
                       City:
                     </div>
                     <div class="transformers-right">
-                    <h2>{{ user_profile.city }}</h2>
+                    <h2>{{ profile_user.city }}</h2>
                     </div>
                   </li>
                   <li>
@@ -72,7 +72,7 @@
                       Gender:
                     </div>
                     <div class="transformers-right">
-                    <h2>{{ user_profile.gender }}</h2>
+                    <h2>{{ profile_user.gender }}</h2>
                     </div>
                   </li>
                   <li>
@@ -80,22 +80,21 @@
                       About:
                     </div>
                     <div class="transformers-right">
-                    <h2>{{ user_profile.about }}</h2>
+                    <h2>{{ profile_user.about }}</h2>
                     </div>
                   </li>
                   <li>
-                    <li>
-                    <div class="transformers-left">
-                      Friends:
-                    </div>
-                    <div class="transformers-right">
-                    <h2>{{ user_profile.friend.count }}</h2>
-                    </div>
-                  </li>
                     <div  class="transformers-left">
+                        {% if request.user.id == profile_user.id %}
 
                     <a href="{% url 'user_settings' %}" >Settings</a>
-
+                        {%else%}
+                        <a href="#" >Add Friend</a>
+                        <form action="{% url 'add_friend' profile_user.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Добавить в друзья</button>
+</form>
+                        {%endif%}
                     </div>
                     <div class="transformers-right">
                     <h2></h2>

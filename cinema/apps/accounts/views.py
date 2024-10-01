@@ -2,13 +2,13 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 
 from .forms import SignUpForm, LoginForm,   ProfileSettingsForm
 from .models import User
-from django.views.generic import CreateView, FormView, TemplateView, UpdateView
+from django.views.generic import CreateView, FormView, TemplateView, UpdateView, DetailView, View
 
 
 # Create your views here.
@@ -65,7 +65,7 @@ class UserpageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_profile'] = self.request.user
-        return  context
+        return context
 
 class UserSettingsView(LoginRequiredMixin, UpdateView):
     model = User
@@ -87,3 +87,27 @@ class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     def form_valid(self, form):
         messages.success(self.request, "Ваш пароль был успешно изменен!")
         return super().form_valid(form)
+
+
+
+class UserProfileView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'pages/another_user_profile.html'
+    context_object_name = 'profile_user'
+
+    def get_object(self):
+         return get_object_or_404(User, id=self.kwargs['user_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['is_friend'] = self.get_object() in self.request.user.friend.all()
+        return context
+
+class AddFriendView(LoginRequiredMixin, View):
+    def post(self, request, user_id):
+        profile_user = get_object_or_404(User, id=user_id)
+        # Добавляем пользователя в друзья
+        request.user.friend.add(profile_user)
+        messages.success(request, f'{profile_user.username} добавлен в друзья!')
+        return redirect(reverse('another_user_profile', args=[user_id]))

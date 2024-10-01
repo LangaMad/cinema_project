@@ -124,6 +124,35 @@
 							<div class="details-overview">
 								<h2>Biography</h2>
 								<p>{{ celebrity.biography }}</p>
+								 <div class="widget">
+									 <br>
+									 <br>
+									 <br>
+                                <h2 class="widget-title">Celebrity's films</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+
+										<div class="row portfolio-item">
+											{% for f in celebrity_film %}
+												<div class="col-lg-3 col-md-4 col-sm-6 soon released">
+													<div class="single-portfolio">
+														<div class="w-100 justify-content-between">
+															<a href="{%url 'film_details' f.id%}" >
+																<img src="{{ f.poster.url }}" alt="{{ f.name }}"   >
+																<h5  style="position: bottom; " >{{ f.name }}</h5>
+															</a>
+
+
+
+
+														</div>
+													</div>
+												</div>
+											{% endfor %}
+										</div>
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
 							</div>
 						</div>
 						<div class="details-thumb {% if not next_celebrity %}hidden{% endif %}">

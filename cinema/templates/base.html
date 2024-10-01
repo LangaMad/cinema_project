@@ -50,6 +50,10 @@
 					</div>
 					<div class="header-right">
 						<form action="#">
+							<select>
+								<option value="Movies">Movies</option>
+								<option value='{% url "celebrity_list" %}' >Celebrities</option>
+							</select>
 							<input type="text"/>
 							<button><i class="icofont icofont-search"></i></button>
 						</form>
@@ -75,10 +79,8 @@
 					    <div class="mainmenu">
                             <ul id="primary-menu">
                                 <li><a class="active" href="{%url 'home' %}">Home</a></li>
-                                <li><a href="movies.html">Movies</a></li>
                                 <li><a href="{% url 'celebrity_list' %}" title="">Celebrities List</a></li>
                                 <li><a href="{%url 'film_list' %}">Movies</a></li>
-                                <li><a href="">CelebritiesList</a></li>
                                 <li><a href="top-movies.html">Top Movies</a></li>
                                 <li><a href="blog.html">News</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
