@@ -7,6 +7,9 @@ class PostCommentsForm(forms.ModelForm):
         model = PostComment
         fields = ('text',)
         widgets = {
-            'text': forms.Textarea(attrs={'placeholder': 'Введите текст комментария',
+            'text': forms.Textarea(attrs={'placeholder': 'Введите текст отзыва',
                                                   'class': 'form-control'}),
         }
+
+class SearchFormNews(forms.Form):
+    query = forms.CharField(max_length=200, required=False)

@@ -19,7 +19,7 @@ class FilmListView(ListView):
     template_name = 'pages/film_list.html'
     context_object_name = 'films'
     queryset = Film.objects.all().order_by('-release')
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         search_text = self.request.GET.get('query')
