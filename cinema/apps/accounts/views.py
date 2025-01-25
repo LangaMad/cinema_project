@@ -60,3 +60,11 @@ class UserpageView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['user_profile'] = self.request.user  # Передаем текущего пользователя в контекст
         return context
+
+
+
+
+
+
+
+

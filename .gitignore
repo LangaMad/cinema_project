@@ -9,6 +9,7 @@ __pycache__
 .idea/
 migrations/
 /migrations
+
 /media
 media/
 media

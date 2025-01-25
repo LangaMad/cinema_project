@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-bqrku3!34)d+4-anh*mszu(w0yuso@_@1ppac66ubi0=a3r0!g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.79.255','localhost','127.0.0.0','0.0.0.0']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'cinema_db',
         'USER': 'cinema_user',
         'PASSWORD': "qwerty123",
-        'HOST': '127.0.0.1',        # localhost
+        'HOST': 'db',        # localhost
         'PORT': '5432'
 
     }
