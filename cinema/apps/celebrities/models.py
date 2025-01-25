@@ -31,6 +31,3 @@ class Celebrity(models.Model):
         verbose_name = 'Селебрити'
         verbose_name_plural = 'Селебрити'
 
-
-
-

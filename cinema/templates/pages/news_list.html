@@ -10,8 +10,8 @@
 						<a href="index-2.html"><img src="assets/img/logo.png" alt="logo" /></a>
 					</div>
 					<div class="header-right">
-						<form action="{% url 'film_list' %}" method="get">
-							{{ forma.query }}
+						<form action="#" method="get">
+							{{ forms.query }}
 							<button><i class="icofont icofont-search"></i></button>
 						</form>
 												    {% csrf_token %}
@@ -58,81 +58,40 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb-area-content">
-							<h1>Films Page</h1>
+							<h1>News Page</h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section><!-- breadcrumb area end -->
-		<!-- portfolio section start -->
-		<section class="portfolio-area pt-60">
+		<!-- blog area start -->
+		<section class="blog-area">
 			<div class="container">
-				<div class="row flexbox-center">
-					<div class="col-lg-6 text-center text-lg-left">
-					    <div class="section-title">
-							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
-						</div>
-					</div>
-					<div class="col-lg-6 text-center text-lg-right">
-					    <div class="portfolio-menu">
-							<ul>
-								<li data-filter="*" class="active">Films</li>
-							</ul>
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-coffee-cup"></i> Latest News</h1>
 						</div>
 					</div>
 				</div>
 				<hr />
-				<div class="row portfolio-item">
-					{% for film in films %}
-					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<a href="{% url 'film_details' film.id %}">
-									{% if film.poster %}
-									<img src="{{ film.poster.url }}" alt="" >
-									{% endif %}
-								</a>
+				<div class="row">
+					<div class="col-lg-12">
+						{% for n in news %}
+						<div class="single-news">
+								<img src="{{ n.main_image.url }}" alt="" >
+							<div class="news-date">
+								<h2><span>{{ n.created_at }}</span></h2>
 							</div>
-							<div class="portfolio-content">
-								<h2><a href="{% url 'film_details' film.id %}" title="">{{ film.name }}</a></h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>{{ film.raiting.rait }}</h4>
-								</div>
+							<div class="news-content">
+								<h2>{{ n.title }}</h2>
 							</div>
+							<a href="{% url 'news_details' n.id %}">Read More</a>
 						</div>
+						{% endfor %}
 					</div>
-					{% endfor %}
 				</div>
-				{% if is_paginated %}
-    <div class="details-thumb {% if not page_obj.has_previous %}hidden{% endif %}">
-        <div class="details-thumb-prev">
-            <div class="thumb-text">
-                {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}"><h1> ◀Back </h1></a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    {% if page_obj.has_next %}
-        <div class="details-thumb-next {% if not page_obj.has_previous %}hidden{% endif %}">
-            <div class="thumb-text">
-				{% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}"><h1> Next▶ </h1></a>
-				{% endif %}
-            </div>
-        </div>
-    {% endif %}
-{% endif %}
 			</div>
-
-		</section><!-- portfolio section end -->
+		</section><!-- blog area end -->
 
 {% endblock %}

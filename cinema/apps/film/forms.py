@@ -23,3 +23,10 @@ class FilmCommentsForm(forms.ModelForm):
             'text': forms.Textarea(attrs={'placeholder': 'Введите текст комментария',
                                                   'class': 'form-control'}),
         }
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(max_length=200, required=False)
+
+class RatingForm(forms.Form):
+    rating = forms.ChoiceField(choices=[(i, str(i)) for i in range(1, 6)])

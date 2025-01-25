@@ -277,20 +277,20 @@
 			<div class="container">
 				<div class="row flexbox-center">
 					<div class="col-lg-6 text-center text-lg-left">
+
 					    <div class="section-title">
-							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+								<h1><i class="icofont icofont-movie"></i> Celebrities</h1>
 						</div>
+
 					</div>
-					<div class="col-lg-6 text-center text-lg-right">
-					    <div class="portfolio-menu">
-							<ul>
-								<li data-filter="*" class="active">Latest</li>
-								<li data-filter=".soon">Comming Soon</li>
-								<li data-filter=".top">Top Rated</li>
-								<li data-filter=".released">Recently Released</li>
-							</ul>
-						</div>
+
+					<div class="header-right">
+						<form method="get" action="{% url 'celebrity_list' %}">
+							<input type="text" name="query" style="color: rgba(255, 255, 255);" placeholder="Поиск"/>
+							<button type="submit"><i class="icofont icofont-search"></i></button>
+						</form>
 					</div>
+
 				</div>
 				<hr />
 				<div class="row portfolio-item">
@@ -298,22 +298,19 @@
 					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img src="{{ celebrity.image.url }}" alt="portfolio" />
+								<img src="{{ celebrity.image.url }}" alt="portfolio" style="display: block; margin: 0 auto; "/>
 							</div>
 							<div class="portfolio-content">
-								<h2>{{ celebrity.first_name }}</h2>
-                              <h2>{{ celebrity.surname }}</h2>
+								<input type="text" method = "get" action = '{% url "celebrity_list" %}'/>
+								<a href="{% url 'celebrity_detail' celebrity.id %}" title="">
+								<h2 style=" font-size: 30px; ">{{ celebrity.first_name }} {{ celebrity.surname }}</h2>
+                              <h2 style=" font-size: 30px; " ></h2>
 								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>{{ celebrity.country }}</h4>
+
 								</div>
+								</a>
 							</div>
+
 						</div>
 					</div>
 					{% endfor %}
@@ -321,5 +318,43 @@
 			</div>
 		</section><!-- portfolio section end -->
 		<!-- video section start -->
+		{% if is_paginated %}
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="Page navigation" style="margin-top: 20px;">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="background-color: #ff2353; color: white;">Previous celebrity</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" style="background-color: #ff2353; color: white;">Previous celebrity</a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active"><a class="page-link" href="#" style="background-color: #ff2353; color: white;">{{num}}</a></li>
+                        {% elif num > page_obj.number|add:-3 and num < page_obj.number|add:3 %}
+                            <li class="page-item"><a class="page-link" href="?page={{num}}" style="background-color: #ff2353; color: white;">{{num}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" style="background-color: #ff2353; color: white;">Next celebrity</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" style="background-color: #ff2353; color: white;">Next celebrity</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div><!-- end col -->
+    </div><!-- end row -->
+{% endif %}
+
 
 {% endblock %}

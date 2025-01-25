@@ -36,7 +36,8 @@ class FilmAdmin(admin.ModelAdmin):
         'slogan',
         'budget',
         'time',
-        'raiting',
+        'average_rating',
+        'rating_count'
     ]
     filter_horizontal = ('genre','celebrity',)
     inlines = [FilmFrameInline, TrailerInline]

@@ -17,3 +17,5 @@ class VacancyAnswerForm(forms.ModelForm):
             'diploma': forms.FileInput(attrs={'class': 'form-control'}),
             'text': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your message'}),
         }
+class SearchForm(forms.Form):
+    query = forms.CharField(max_length=100, required=False)
