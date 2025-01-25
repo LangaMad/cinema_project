@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<header class="header">
+			<div class="container">
+				<div class="header-area">
+					<div class="logo">
+						<a href="index-2.html"><img src="assets/img/logo.png" alt="logo" /></a>
+					</div>
+					<div class="header-right">
+						<form action="{% url 'film_list' %}" method="get">
+							{{ forma.query }}
+							<button><i class="icofont icofont-search"></i></button>
+						</form>
+												    {% csrf_token %}
+
+						<ul>
+
+							{% if not request.user.is_authenticated %}
+							<li><a href="">Welcome Guest!</a></li>
+
+							<li><a  href="{% url 'signin' %}">Login</a></li>
+							<li><a  href="{% url 'signup' %}">Registration</a></li>
+							                            {% else %}
+							<li><a href="{% url 'user_page' %}">Welcome {{request.user.username}}</a></li>
+
+							<li><a  href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+
+						</ul>
+					</div>
+					<div class="menu-area">
+						<div class="responsive-menu"></div>
+					    <div class="mainmenu">
+                            <ul id="primary-menu">
+                                <li><a class="active" href="{%url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'film_list' %}">Movies</a></li>
+                                <li><a href="{% url 'celebrity_list' %}" title="">Celebrities List</a></li>
+                                <li><a href="{% url 'film_list' %}">Movies</a></li>
+                                <li><a href="top-movies.html">Top Movies</a></li>
+                                <li><a href="{% url 'news_list' %}">News</a></li>
+								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
+									<ul>
+										<li><a href="blog-details.html">Blog Details</a></li>
+										<li><a href="movie-details.html">Movie Details</a></li>
+									</ul>
+								</li>
+                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
+                            </ul>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</header>
+        <section class="breadcrumb-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-area-content">
+							<h1>Film Detalied Page</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- breadcrumb area end -->
+		<!-- transformers area start -->
+		<section class="transformers-area">
+			<div class="container">
+				<div class="transformers-box">
+					<div class="row flexbox-center">
+						<div class="col-lg-5 text-lg-left text-center">
+							<div class="transformers-content">
+								{% if film.poster %}
+								<img src="{{ film.poster.url }}" alt="about" >
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div class="transformers-content">
+								<h2>{{ film.name }}</h2>
+								<p>{{ film.origin_name }}</p>
+								<ul>
+									<li>
+										<div class="transformers-left">
+											Genre:
+										</div>
+										<div class="transformers-right">
+                                          {% for genre in film.genre.all %}
+											<a href="#">{{ genre.name }}, </a>
+                                          {% endfor %}
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Country:
+										</div>
+										<div class="transformers-right">
+											{{ film.country }}
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Slogan:
+										</div>
+										<div class="transformers-right">
+											{{ film.slogan }}
+										</div>
+									</li>
+                                    <li>
+										{% if directors %}
+										<div class="transformers-left">
+											Director:
+										</div>
+                                      {% for d in directors %}
+										<div class="transformers-right">
+											{{ d.surname }} {{ d.first_name }} ,
+										</div>
+                                      {% endfor %}
+										{% endif %}
+									</li>
+									<li>
+										{% if actors %}
+										<div class="transformers-left">
+											Actor:
+										</div>
+                                      {% for actor in actors %}
+										<div class="transformers-right">
+											{{ actor.surname }} {{ actor.first_name }} ,
+										</div>
+                                      {% endfor %}
+										{% endif %}
+									</li>
+									<li>
+										{% if screenwriter %}
+										<div class="transformers-left">
+											Screenwriter:
+										</div>
+                                      {% for s in screenwriter %}
+										<div class="transformers-right">
+											{{ s.surname }} {{ s.first_name }} ,
+										</div>
+                                      {% endfor %}
+										{% endif %}
+									</li>
+									<li>
+										{% if producer %}
+										<div class="transformers-left">
+											Producer:
+										</div>
+                                      {% for p in producer %}
+										<div class="transformers-right">
+											{{ p.surname }} {{ p.first_name }} ,
+										</div>
+                                      {% endfor %}
+										{% endif %}
+									</li>
+
+                                    <li>
+										<div class="transformers-left">
+											Budget:
+										</div>
+										<div class="transformers-right">
+											{{ film.budget }}
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Time:
+										</div>
+										<div class="transformers-right">
+											{{ film.time }}
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Release:
+										</div>
+										<div class="transformers-right">
+											{{ film.release }}
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Raiting:
+										</div>
+										<div class="transformers-right">
+											 <a href="#" class="theme-btn">{{ film.average_rating }}</a>
+
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Оценить:
+										</div>
+										<div class="transformers-right">
+										</div>
+										<form method="post">
+											{% csrf_token %}
+											{{ rating_form.as_p }}
+											<button type="submit" name="submit_rating">Оценить</button>
+										</form>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<form action="{% url 'add_to_favorites' %}" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="film_id" value="{{ film.id }}">
+					<button type="submit" class="theme-btn">
+						<i class="icofont icofont-ticket"></i> Добавить в избранные
+					</button>
+				</form>
+				</div>
+			</div>
+		</section><!-- transformers area end -->
+
+		<section class="video ptb-90">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-film"></i> Кадры из фильма</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+                    <div class="col-md-12">
+						{% if frames %}
+						<div class="video-slider mt-20">
+							{% for f in frames %}
+							<div class="video-area">
+								<img src="{{ f.frame.url }}" alt="video" >
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
+                    </div>
+				</div>
+			</div>
+		</section><!-- video section end -->
+		<section class="video ptb-60">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-film"></i>Смотреть фильм</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+                    <div class="col-md-9">
+						{% if film.film_poster %}
+						<div class="video-area">
+							<video
+							  controls
+							  src="{{ film.film.url }}"
+							  poster="{{ film.film_poster.url }}"
+							  width="820">
+							  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+							  and watch it with your favorite video player!
+							</video>
+						</div>
+						{% endif %}
+                    </div>
+					{% if trailer %}
+					<div class="col-md-3">
+						{% for t in trailer %}
+							<div class="row">
+								<div class="col-md-12 col-sm-6">
+								<div class="video-area">
+								{% if t.video %}
+									<video
+									  controls
+									  src="{{ t.video.url }}"
+									  poster="{{ t.image.url }}"
+									  width="240">
+									  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+									  and watch it with your favorite video player!
+									</video>
+								{% else %}
+									<img src="{{ t.image.url }}" alt="video" >
+									<a href="{{ t.url }}" class="popup-youtube">
+										<i class="icofont icofont-ui-play"></i>
+									</a>
+								{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</section><!-- video section end -->
+		<!-- details area start -->
+		<section class="details-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="details-content">
+							<div class="details-overview">
+								<h2>Описание фильма:</h2>
+                              <p>{{ film.film_description }}</p>
+							</div>
+							<div class="details-overview">
+								<h2>Отзывы к фильму:</h2>
+								{% for comment in comments %}
+                              <p><a href="{% url 'another_user_profile' comment.author.id %}"> {{ comment.author.username }}</a></p>
+								<p>   {{ comment.created_at }}</p>
+								<p>   {{ comment.text }}</p>
+								<br>
+								<br>
+								{% endfor %}
+							</div>
+							<div class="details-reply">
+
+								<h2>Оставить отзыв:</h2>
+								<form action="{% url 'film_details' film.pk %}" method="post">
+									{% csrf_token %}
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="textarea-container">
+<!--												<textarea placeholder="Type Here Message"></textarea>-->
+												{{ form.text }}
+											</div>
+											<button type="submit" name="submit_comment">Post Comment</button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div class="details-thumb {% if not next_film %}hidden{% endif %}">
+								<div class="details-thumb-prev">
+									<div class="thumb-icon">
+										{% if previous_film %}
+										<i class="icofont icofont-simple-left"></i>
+									</div>
+									<div class="thumb-text">
+											<a href="{% url 'film_details' previous_film.id %}"><h3>Previous Post</h3></a>
+										{% endif %}
+									</div>
+								</div>
+								<div class="details-thumb-next {% if not next_film %}hidden{% endif %}">
+									<div class="thumb-text">
+										{% if next_film %}
+											<a href="{% url 'film_details' next_film.id %}"><h3>Next Post</h3></a>
+									</div>
+									<div class="thumb-icon">
+										<i class="icofont icofont-simple-right"></i>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 text-center text-lg-left">
+					    <div class="portfolio-sidebar">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- details area end -->
+
+{% endblock %}

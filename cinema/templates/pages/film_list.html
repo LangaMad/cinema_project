@@ -1,0 +1,138 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+		<header class="header">
+			<div class="container">
+				<div class="header-area">
+					<div class="logo">
+						<a href="index-2.html"><img src="assets/img/logo.png" alt="logo" /></a>
+					</div>
+					<div class="header-right">
+						<form action="{% url 'film_list' %}" method="get">
+							{{ forma.query }}
+							<button><i class="icofont icofont-search"></i></button>
+						</form>
+												    {% csrf_token %}
+						<ul>
+
+							{% if not request.user.is_authenticated %}
+							<li><a href="">Welcome Guest!</a></li>
+
+							<li><a  href="{% url 'signin' %}">Login</a></li>
+							<li><a  href="{% url 'signup' %}">Registration</a></li>
+							                            {% else %}
+							<li><a href="{% url 'user_page' %}">Welcome {{request.user.username}}</a></li>
+
+							<li><a  href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+
+						</ul>
+					</div>
+					<div class="menu-area">
+						<div class="responsive-menu"></div>
+					    <div class="mainmenu">
+                            <ul id="primary-menu">
+                                <li><a class="active" href="{%url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'celebrity_list' %}" title="">Celebrities List</a></li>
+                                <li><a href="{%url 'film_list' %}">Movies</a></li>
+<!--                                <li><a href="">CelebritiesList</a></li>-->
+                                <li><a href="top-movies.html">Top Movies</a></li>
+                                <li><a href="{%url 'news_list' %}">News</a></li>
+								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
+									<ul>
+										<li><a href="blog-details.html">Blog Details</a></li>
+										<li><a href="movie-details.html">Movie Details</a></li>
+									</ul>
+								</li>
+                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
+                            </ul>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</header>
+        <section class="breadcrumb-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-area-content">
+							<h1>Films Page</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- breadcrumb area end -->
+		<!-- portfolio section start -->
+		<section class="portfolio-area pt-60">
+			<div class="container">
+				<div class="row flexbox-center">
+					<div class="col-lg-6 text-center text-lg-left">
+					    <div class="section-title">
+							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+						</div>
+					</div>
+					<div class="col-lg-6 text-center text-lg-right">
+					    <div class="portfolio-menu">
+							<ul>
+								<li data-filter="*" class="active">Films</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row portfolio-item">
+					{% for film in films %}
+					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
+						<div class="single-portfolio">
+							<div class="single-portfolio-img">
+								<a href="{% url 'film_details' film.id %}">
+									{% if film.poster %}
+									<img src="{{ film.poster.url }}" alt="" >
+									{% endif %}
+								</a>
+							</div>
+							<div class="portfolio-content">
+								<h2><a href="{% url 'film_details' film.id %}" title="">{{ film.name }}</a></h2>
+								<div class="review">
+									<div class="author-review">
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+									</div>
+									<h4>{{ film.raiting.rait }}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% if is_paginated %}
+    <div class="details-thumb {% if not page_obj.has_previous %}hidden{% endif %}">
+        <div class="details-thumb-prev">
+            <div class="thumb-text">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"><h1> ◀Back </h1></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if page_obj.has_next %}
+        <div class="details-thumb-next {% if not page_obj.has_previous %}hidden{% endif %}">
+            <div class="thumb-text">
+				{% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}"><h1> Next▶ </h1></a>
+				{% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+			</div>
+
+		</section><!-- portfolio section end -->
+
+{% endblock %}
